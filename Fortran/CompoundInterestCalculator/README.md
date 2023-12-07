@@ -13,12 +13,12 @@
 
 - My first *Fortran* code to overcome coding yips(?)
 - Environment : Fortran 95 supported from [Replit](https://replit.com/)
-- Compile and Run
-  - Complie
+- Compilation and Run
+  - Compilation
     ```
     gfortran -o main CompoundInterestCalc.f95
     ```
-  - Run :
+  - Run
     ```
     ./main
     ```
@@ -64,7 +64,7 @@
   <details open="">
     <summary>Results</summary>
 
-    ```json
+    ```yaml
     Enter the principal amount  : 10000
     Enter the interest rate(%)  : 6
     Enter the number of periods : 12
@@ -74,7 +74,7 @@
     The interest amount :     10121.95
     The total amount    :     20121.95
     ```
-    ```json
+    ```yaml
     Enter the principal amount  : 0   
     Enter the interest rate(%)  : 5
     Enter the number of periods : 12
@@ -84,7 +84,7 @@
     The interest amount :      3917.11
     The total amount    :     15917.11
     ```
-    ```json
+    ```yaml
     Enter the principal amount  : 10000
     Enter the interest rate(%)  : 3
     Enter the number of periods : 12
