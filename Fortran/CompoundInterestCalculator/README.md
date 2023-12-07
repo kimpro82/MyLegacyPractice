@@ -8,8 +8,8 @@
 
 ## [Compound Interest Calculator (2023.12.07)](#list)
 
-- My first *Fortran* code to overcome coding yips(?)
-- Environment : *Fortran 95* supported from [Replit](https://replit.com/)
+- My initial *Fortran* code to overcome coding yips(?)
+- Environment : *Fortran 95* supported on [Replit](https://replit.com/)
 - Compilation and Run
   - Compilation
     ```
@@ -19,9 +19,9 @@
     ```
     ./main
     ```
-- Codes and Results
+- Code and Output
   <details>
-    <summary>Codes : CompoundInterestCalc.f95</summary>
+    <summary>Code : CompoundInterestCalc.f95</summary>
 
     ```fortran
     program compound_interest_calculator
@@ -59,7 +59,7 @@
     ```
   </details>
   <details open="">
-    <summary>Results</summary>
+    <summary>Output</summary>
 
     ```yaml
     Enter the principal amount  : 10000
