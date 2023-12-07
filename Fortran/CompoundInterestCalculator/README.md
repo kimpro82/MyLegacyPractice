@@ -12,7 +12,7 @@
 ## [Compound Interest Calculator (2023.12.07)](#list)
 
 - My first *Fortran* code to overcome coding yips(?)
-- Environment : Fortran 95 supported from [Replit](https://replit.com/)
+- Environment : *Fortran 95* supported from [Replit](https://replit.com/)
 - Compilation and Run
   - Compilation
     ```
