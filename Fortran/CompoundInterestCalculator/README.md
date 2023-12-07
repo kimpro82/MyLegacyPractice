@@ -1,10 +1,10 @@
-## [Fortran > Compound Interest Calculator](/README.md#fortran)
+### [Fortran > Compound Interest Calculator](/README.md#fortran)
 
 
 # [Compound Interest Calculator](/README.md#fortran)
 
 
-## \<List>
+### \<List>
 
 - [Compound Interest Calculator (2023.12.07)](#compound-interest-calculator-20231207)
 
