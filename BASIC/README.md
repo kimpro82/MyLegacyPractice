@@ -1,4 +1,4 @@
-# [My Basic Practice](../README.md#my-basic-practice)
+# [My Basic Practice](../README.md#basic)
 
 My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASIC* and so on) before [*Visual Basic*](../VBA)
 
