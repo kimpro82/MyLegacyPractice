@@ -1,4 +1,4 @@
-# [Fortran > Compound Interest Calculator](/README.md#fortran)
+# [Fortran](/README.md#fortran)
 
 
 ### \<List>
