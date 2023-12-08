@@ -1,4 +1,4 @@
-# [My COBOL Practice](../README.md#my-cobol-practice)
+# [My COBOL Practice](../README.md#cobol)
 
 COBOL never dies
 
