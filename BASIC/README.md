@@ -16,6 +16,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 ## [Decimal/Hexadecimal Convertor (2023.12.10)](#list)
 
 - To practice Subroutine with `GOSUB` ~ `RETURN` statements
+  - Reference : [8비트 컴퓨터에서 게임 만들기 (YouTube)](https://youtu.be/Z8yeXVqiKg8)
 - Be aware of *BOM*(Byte-Order Mark; `EF BB BF`) signature generation when creating a code file with an external editor
 
   ![Decimal/Hexadecimal Convertor](./Images/GW-BASIC_HEXCONV_RUN.PNG)
