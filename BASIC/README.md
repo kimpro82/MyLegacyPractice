@@ -5,11 +5,54 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 
 ### \<List>
 
+- [Decimal/Hexadecimal Convertor (2023.12.10)](#decimalhexadecimal-convertor-20231210)
 - [Line Numbering 2 (2023.07.22)](#line-numbering-2-20230722)
 - [Line Numbering (2023.07.19)](#line-numbering-20230719)
 - [Draw A Car (2022.02.09)](#draw-a-car-20220209)
 - [Play Music (2021.02.20)](#play-music-20210220)
 - [Hello World (2020.02.27)](#hello-world-20200227)
+
+
+## [Decimal/Hexadecimal Convertor (2023.12.10)](#list)
+
+- To practice Subroutine with `GOSUB` ~ `RETURN` statements
+- Be aware of *BOM*(Byte-Order Mark; `EF BB BF`) signature generation when creating a code file with an external editor
+
+  ![Decimal/Hexadecimal Convertor](./Images/GW-BASIC_HEXCONV_RUN.PNG)
+
+  <details>
+    <summary>Codes : HEXCONV.BAS</summary>
+
+    ```bas
+    0 CLS
+
+    10 PRINT "*************************************"
+    20 PRINT "*  <Decimal/Hexadecimal Convertor>  *"
+    30 PRINT "*  kimpro82 / 2023.12.10, not 1993  *"
+    40 PRINT "* * * * * * * * * * * * * * * * * * *"
+    50 PRINT "* 1. Convert Decimal to Hexadecimal *"
+    60 PRINT "* 2. Convert Hexadecimal to Decimal *"
+    70 PRINT "* 3. Exit                           *"
+    80 PRINT "*************************************"
+    90 INPUT " Select a menu (1, 2, 3): "; MENU
+
+    100 IF MENU = 1 THEN GOSUB 200
+    110 IF MENU = 2 THEN GOSUB 300
+    120 IF MENU = 3 THEN END
+    130 GOTO 90
+
+    200 ' Subroutine for Decimal to Hexadecimal Conversion
+    210 INPUT " Enter a decimal value: "; DEC
+    220 PRINT " Hexadecimal value    : "; HEX$(DEC)
+    230 RETURN
+
+    300 ' Subroutine for Hexadecimal to Decimal Conversion
+    310 INPUT " Enter a hexadecimal value: "; HEXA$
+    315     ' The keyword HEX$(X) is already in use
+    320 PRINT " Decimal value            : "; VAL("&H" + HEXA$)
+    330 RETURN
+    ```
+  </details>
 
 
 ## [Line Numbering 2 (2023.07.22)](#list)
