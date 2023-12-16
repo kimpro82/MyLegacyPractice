@@ -219,7 +219,7 @@
   <details open="">
     <summary>Output</summary>
 
-    ```yaml
+    ```fortran
     Enter the principal amount  : 10000
     Enter the interest rate(%)  : 6
     Enter the number of periods : 12
@@ -229,7 +229,7 @@
     The interest amount :     10121.95
     The total amount    :     20121.95
     ```
-    ```yaml
+    ```fortran
     Enter the principal amount  : 0   
     Enter the interest rate(%)  : 5
     Enter the number of periods : 12
@@ -239,7 +239,7 @@
     The interest amount :      3917.11
     The total amount    :     15917.11
     ```
-    ```yaml
+    ```fortran
     Enter the principal amount  : 10000
     Enter the interest rate(%)  : 3
     Enter the number of periods : 12
