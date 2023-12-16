@@ -23,7 +23,7 @@
     ```fortran
     PROGRAM CompoundInterestCalculator_2
 
-      ……
+      (All of the below code is located here)
 
     END PROGRAM CompoundInterestCalculator_2
     ```
