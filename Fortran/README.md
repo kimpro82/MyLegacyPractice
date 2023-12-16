@@ -170,11 +170,11 @@
 - Environment : *Fortran 95* supported on [Replit](https://replit.com/)
 - Compilation and Run
   - Compilation
-    ```
+    ```batchfile
     gfortran -o main CompoundInterestCalc.f95
     ```
   - Run
-    ```
+    ```batchfile
     ./main
     ```
 - Code and Output
