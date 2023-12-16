@@ -16,9 +16,9 @@ PROGRAM CompoundInterestCalculator_2
   ! Set if test mode
   IsTest = .TRUE.
 ! #IF DEFINED(TEST)
-!    IsTest = .TRUE.
+!   IsTest = .TRUE.
 ! #ELSE
-!    IsTest = .FALSE.
+!   IsTest = .FALSE.
 ! #ENDIF
 
   ! Get values from user

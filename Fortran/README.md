@@ -42,9 +42,9 @@
       ! Set if test mode
       IsTest = .TRUE.
     ! #IF DEFINED(TEST)
-    !    IsTest = .TRUE.
+    !   IsTest = .TRUE.
     ! #ELSE
-    !    IsTest = .FALSE.
+    !   IsTest = .FALSE.
     ! #ENDIF
     ```
     ```fortran
