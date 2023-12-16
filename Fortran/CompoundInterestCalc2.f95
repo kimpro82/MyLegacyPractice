@@ -5,13 +5,21 @@ PROGRAM CompoundInterestCalculator_2
 
   IMPLICIT NONE
 
-  LOGICAL :: Test
-  REAL :: Principal, Rate, Pmt
-  REAL :: Deposit, CurrentValue, Interest, TotalInterest, TotalAmount, TotalWithdrawl, MaturityBalance
+  LOGICAL :: IsTest
+  REAL :: Principal, Rate, Pmt, &
+          Deposit, Interest, CurrentValue, &
+          TotalInterest, TotalWithdrawl, TotalAmount, MaturityBalance
   INTEGER :: Periods, i
+  CHARACTER(LEN=30), PARAMETER :: Format1 = "(A,I6,A,F12.2,A,F12.2,A,F12.2)"
+  CHARACTER(LEN= 9), PARAMETER :: Format2 = "(A,F12.2)"
 
-  ! Set Test Mode
-  Test = .TRUE.
+  ! Set if test mode
+  IsTest = .TRUE.
+! #IF DEFINED(TEST)
+!    IsTest = .TRUE.
+! #ELSE
+!    IsTest = .FALSE.
+! #ENDIF
 
   ! Get values from user
   WRITE(*, "(A)", ADVANCE='NO') 'Enter the principal amount                 : '; READ*, Principal
@@ -25,44 +33,48 @@ PROGRAM CompoundInterestCalculator_2
   Interest = 0.0
   TotalInterest = 0.0
   TotalWithdrawl = 0.0
-  MaturityBalance = 0.0
-
-  IF (Test) THEN
-    WRITE(*, "(A)") ""
-    WRITE(*, "(A)") "<Test>"
-  END IF
 
   ! Calculate
   ! Pmt : The initial deposit is assumed.
-  DO i = 1, Periods
-    Interest = (CurrentValue + Pmt) * (Rate/100)
-    CurrentValue = CurrentValue + Pmt + Interest
-    TotalInterest = TotalInterest + Interest
-
-    IF (Pmt >= 0) THEN
-      Deposit = Deposit + Pmt
-    ELSE
-      TotalWithdrawl = TotalWithdrawl - Pmt
+  IF ((Pmt >= 0) .AND. .NOT. (IsTest)) THEN
+    Deposit = Principal + Pmt * Periods
+    CurrentValue = Principal * (1 + Rate/100) ** Periods + &
+                   Pmt * ( ( (1 + Rate/100) ** Periods - 1) / (Rate/100) )
+    TotalInterest = CurrentValue - Deposit
+  ELSE
+    IF (IsTest) THEN
+      WRITE(*, "(A)") ""
+      WRITE(*, "(A)") "<Test>"
     END IF
 
-    IF (.NOT. Test) THEN
-      CONTINUE
-    END IF
+    DO i = 1, Periods
+      Interest = (CurrentValue + Pmt) * (Rate/100)
+      CurrentValue = CurrentValue + Pmt + Interest
+      TotalInterest = TotalInterest + Interest
 
-    ! WRITE(*, "(I6)") " i: ", i                            ! " i: " requires "(A)"!
-    WRITE(*, "(A,I6,A,F12.2,A,F12.2,A,F12.2)") &
-      " i: ", i, ", Deposit: ", Deposit, ", Interest: ", Interest, ", CurrentValue : ", CurrentValue
-  END DO
+      IF (Pmt >= 0) THEN
+        Deposit = Deposit + Pmt
+      ELSE
+        TotalWithdrawl = TotalWithdrawl - Pmt
+      END IF
+
+      IF (IsTest) THEN
+        ! WRITE(*, "(I6)") " i: ", i                            ! " i: " requires "(A)"!
+        WRITE(*, Format1) &
+          " i: ", i, ", Deposit: ", Deposit, ", Interest: ", Interest, ", CurrentValue : ", CurrentValue
+      END IF
+    END DO
+  END IF
 
   TotalAmount = Deposit + TotalInterest
   MaturityBalance = TotalAmount - TotalWithdrawl
 
   ! Display the calculated results
   WRITE(*, "(A)") ""
-  WRITE(*, "(A,F12.2)") "The deposit amount          : ", Deposit
-  WRITE(*, "(A,F12.2)") "The interest amount         : ", TotalInterest
-  WRITE(*, "(A,F12.2)") "The total amount            : ", TotalAmount
-  WRITE(*, "(A,F12.2)") "The early withdrawal amount : ", TotalWithdrawl
-  WRITE(*, "(A,F12.2)") "The maturity balance        : ", MaturityBalance
+  WRITE(*, Format2) "The deposit amount          : ", Deposit
+  WRITE(*, Format2) "The interest amount         : ", TotalInterest
+  WRITE(*, Format2) "The total amount            : ", TotalAmount
+  WRITE(*, Format2) "The early withdrawal amount : ", TotalWithdrawl
+  WRITE(*, Format2) "The maturity balance        : ", MaturityBalance
 
 END PROGRAM CompoundInterestCalculator_2
