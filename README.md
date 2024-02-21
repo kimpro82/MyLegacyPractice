@@ -19,6 +19,12 @@ Being Great Gatsby with legacy language programming
   - [Compound Interest Calculator (2023.12.07)](/Fortran/README.md#compound-interest-calculator-20231207)
 
 
+## [Ada](/Ada/)
+
+- [Multiplication Table (2024.02.21)](/Ada/README.md#multiplication-table-20240221)
+- [Hello World (2024.02.21)](/Ada/README.md#hello-world-20240221)
+
+
 ## [COBOL](/COBOL/)
 
   - [Hello World (2023.09.04)](/COBOL/README.md#hello-world-20230904)
