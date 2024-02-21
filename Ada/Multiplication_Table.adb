@@ -14,9 +14,9 @@ begin
                     Multiplicand : Integer := Group_Index * 3 + Position_In_Group;
                     Result : Integer := Multiplicand * Multiplier;
                 begin
-                    Put(Multiplicand, 2);
+                    Put(Multiplicand, 1);
                     Put(" * ");
-                    Put(Multiplier, 2);
+                    Put(Multiplier, 1);
                     Put(" = ");
                     Put(Result, 2);
                     Put("   ");
