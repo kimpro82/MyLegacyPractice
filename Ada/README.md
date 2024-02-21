@@ -5,7 +5,7 @@ Remember Ada Lovelace
 
 ### \<List>
 
-- [Multiplication Table (2023.12.16)](#multiplication-table-20240221)
+- [Multiplication Table (2024.02.21)](#multiplication-table-20240221)
 - [Hello World (2024.02.21)](#hello-world-20240221)
 
 
