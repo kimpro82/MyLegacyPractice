@@ -3,6 +3,14 @@
 Remember Ada Lovelace
 
 
+### References
+
+- [Wikibooks](https://en.wikibooks.org/)
+  - [Ada Programming](https://en.wikibooks.org/wiki/Ada_Programming)  
+  - [Ada Style Guide](https://en.wikibooks.org/wiki/Ada_Style_Guide)
+- Compiler : [JDoodle](https://www.jdoodle.com/) > [Online Ada Compiler](https://www.jdoodle.com/execute-ada-online)
+
+
 ### \<List>
 
 - [Multiplication Table (2024.02.21)](#multiplication-table-20240221)
@@ -11,7 +19,6 @@ Remember Ada Lovelace
 
 ## [Multiplication Table (2024.02.21)](#list)
 
-- Compiler ☞ [JDoodle](https://www.jdoodle.com/) > [Online Ada Compiler](https://www.jdoodle.com/execute-ada-online)
 - Code and Output
   <details>
     <summary>Code : Multiplication_Table.adb</summary>
@@ -85,8 +92,7 @@ Remember Ada Lovelace
 
 ## [Hello World (2024.02.21)](#list)
 
-- My initial Ada code
-- Compiler ☞ [JDoodle](https://www.jdoodle.com/) > [Online Ada Compiler](https://www.jdoodle.com/execute-ada-online)
+- My initial *Ada* code
 - Code and Output
   <details open="">
     <summary>Code : Hello_World.adb</summary>
