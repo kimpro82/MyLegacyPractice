@@ -12,9 +12,9 @@ PROGRAM DepreciationCalculator
     INTEGER :: Year
 
     ! Get user input
-    WRITE(*, '(A)', ADVANCE='NO') "Enter the initial cost of the asset          : "; READ *, InitialCost
-    WRITE(*, '(A)', ADVANCE='NO') "Enter the salvage value of the asset         : "; READ *, SalvageValue
-    WRITE(*, '(A)', ADVANCE='NO') "Enter the useful life of the asset (in years): "; READ *, UsefulLife
+    WRITE(*, '(A)', ADVANCE='NO') "Enter the initial cost of the asset           : "; READ *, InitialCost
+    WRITE(*, '(A)', ADVANCE='NO') "Enter the salvage value of the asset          : "; READ *, SalvageValue
+    WRITE(*, '(A)', ADVANCE='NO') "Enter the useful life of the asset (in years) : "; READ *, UsefulLife
     WRITE(*, '(A)') ""
 
     ! Initialize accumulatedDepreciation and bookValue
