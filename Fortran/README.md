@@ -17,7 +17,7 @@
     : Declining Balance Method, Accelerated Depreciation Method, Sum-of-the-Years’ Digits Method, etc.
 - Code and Output
   <details>
-    <summary>Code : CompoundInterestCalc.f95</summary>
+    <summary>Code : DepreciationCalculator.f95</summary>
 
     ```fortran
     PROGRAM DepreciationCalculator
