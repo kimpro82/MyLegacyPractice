@@ -3,8 +3,78 @@
 
 ### \<List>
 
+- [Depreciation Calculator (2024.04.20)](#depreciation-calculator-20240420)
 - [Compound Interest Calculator 2 (2023.12.16)](#compound-interest-calculator-2-20231216)
 - [Compound Interest Calculator (2023.12.07)](#compound-interest-calculator-20231207)
+
+
+
+## [Depreciation Calculator (2024.04.20)](#list)
+
+- Calculate depreciation only using the straight-line method
+- Future Improvements
+  - Add various methods of depreciation  
+    : Declining Balance Method, Accelerated Depreciation Method, Sum-of-the-Years’ Digits Method, etc.
+- Code and Output
+  <details>
+    <summary>Code : CompoundInterestCalc.f95</summary>
+
+    ```fortran
+    PROGRAM DepreciationCalculator
+
+      (All of the below code is located here)
+
+    END PROGRAM DepreciationCalculator
+    ```
+    ```fortran
+        IMPLICIT NONE
+    ```
+    ```fortran
+        DOUBLE PRECISION :: InitialCost, SalvageValue, UsefulLife
+        DOUBLE PRECISION :: DepreciationExpense, AccumulatedDepreciation, BookValue
+        INTEGER :: Year
+    ```
+    ```fortran
+        ! Get user input
+        WRITE(*, '(A)', ADVANCE='NO') "Enter the initial cost of the asset           : "; READ *, InitialCost
+        WRITE(*, '(A)', ADVANCE='NO') "Enter the salvage value of the asset          : "; READ *, SalvageValue
+        WRITE(*, '(A)', ADVANCE='NO') "Enter the useful life of the asset (in years) : "; READ *, UsefulLife
+        WRITE(*, '(A)') ""
+    ```
+    ```fortran
+        ! Initialize accumulatedDepreciation and bookValue
+        AccumulatedDepreciation = 0.0
+        BookValue = InitialCost
+    ```
+    ```fortran
+        ! Print header
+        WRITE(*, '(A6, A22, A26, A20)') "Year", "Depreciation Expense", "Accumulated Depreciation", "Book Value"
+
+        ! Calculate and print depreciation for each year
+        DO Year = 1, INT(UsefulLife)
+            DepreciationExpense = (InitialCost - SalvageValue) / UsefulLife
+            AccumulatedDepreciation = AccumulatedDepreciation + DepreciationExpense
+            BookValue = BookValue - DepreciationExpense
+            WRITE(*, '(I6, F22.2, F26.2, F20.2)') Year, DepreciationExpense, AccumulatedDepreciation, BookValue
+        END DO
+    ```
+  </details>
+  <details open="">
+    <summary>Output</summary>
+
+    ```fortran
+    Enter the initial cost of the asset           : 11000
+    Enter the salvage value of the asset          : 1000
+    Enter the useful life of the asset (in years) : 5
+
+     Year  Depreciation Expense  Accumulated Depreciation          Book Value
+        1               2000.00                   2000.00             9000.00
+        2               2000.00                   4000.00             7000.00
+        3               2000.00                   6000.00             5000.00
+        4               2000.00                   8000.00             3000.00
+        5               2000.00                  10000.00             1000.00
+    ```
+  </details>
 
 
 ## [Compound Interest Calculator 2 (2023.12.16)](#list)
