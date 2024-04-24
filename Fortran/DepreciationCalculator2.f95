@@ -25,20 +25,32 @@ PROGRAM DepreciationCalculator2
 
     DOUBLE PRECISION :: InitialCost, SalvageValue, UsefulLife
     DOUBLE PRECISION :: DepreciationRate
-    DOUBLE PRECISION :: DepreciationExpense, AccumulatedDepreciation, BookValue
     INTEGER :: Year
 
     ! Set column and row formatting
     ColumnNameFormat = "(A6, A16, A16, A16)"
     RowContentFormat = "(I6, F16.2, F16.2, F16.2)"
 
+    ! Display program information
+    WRITE(*, '(A)', ADVANCE='NO')  "Depreciation Calculator Ver.2"
+    WRITE(*, '(A/)') " (2024.04.22)"
+
     ! Get user input
-    WRITE(*, '(A)', ADVANCE='NO') "Enter the initial cost of the asset           : "; READ *, InitialCost
-    WRITE(*, '(A)', ADVANCE='NO') "Enter the salvage value of the asset          : "; READ *, SalvageValue
-    WRITE(*, '(A)', ADVANCE='NO') "Enter the useful life of the asset (in years) : "; READ *, UsefulLife
-    WRITE(*, '(A)') "Enter the depreciation rate (%)"
-    WRITE(*, '(A)', ADVANCE='NO') "  (Default: 2 / useful life, ≒ DDB)           : "; READ *, DepreciationRate
+    WRITE(*, '(A)', ADVANCE='NO') "  Enter the initial cost of the asset           : "; READ *, InitialCost
+    WRITE(*, '(A)', ADVANCE='NO') "  Enter the salvage value of the asset          : "; READ *, SalvageValue
+    WRITE(*, '(A)', ADVANCE='NO') "  Enter the useful life of the asset (in years) : "; READ *, UsefulLife
+    WRITE(*, '(A)') "  Enter the depreciation rate(%)"
+    WRITE(*, '(A)', ADVANCE='NO') "    (Default: 2 / useful life, ≒ DDB)           : "; READ *, DepreciationRate
+
+    ! Notification of specific details
+    WRITE(*, '(/A)') "※ In declining balance method and double declining balance depreciation, "
+    WRITE(*, '(A)')  "  the salvage value is not recognized in the calculation of the depreciation base."
     WRITE(*, '(/)')
+
+    ! Set default value of the depreciation rate for DB method
+    IF (DepreciationRate == 0.0) THEN
+        DepreciationRate = (2 / UsefulLife) * 100
+    END IF
 
     ! Call the custom functions to calculate depreciation
     CALL CalculateStraightLine(InitialCost, SalvageValue, UsefulLife)
@@ -54,7 +66,6 @@ CONTAINS
 
         DOUBLE PRECISION, INTENT(IN) :: InitialCost, SalvageValue, UsefulLife
         DOUBLE PRECISION :: DepreciationExpense, AccumulatedDepreciation, BookValue
-        INTEGER :: Year
 
         ! Initialize accumulatedDepreciation and bookValue
         AccumulatedDepreciation = 0.0
@@ -72,7 +83,7 @@ CONTAINS
             BookValue = BookValue - DepreciationExpense
             WRITE(*, RowContentFormat) Year, DepreciationExpense, AccumulatedDepreciation, BookValue
         END DO
-        WRITE(*, '(/)')
+        WRITE(*, '(A)') ""
 
     END SUBROUTINE CalculateStraightLine
 
@@ -82,7 +93,6 @@ CONTAINS
 
         DOUBLE PRECISION, INTENT(IN) :: InitialCost, SalvageValue, UsefulLife, DepreciationRate
         DOUBLE PRECISION :: DepreciationExpense, AccumulatedDepreciation, BookValue
-        INTEGER :: Year
 
         ! Initialize accumulatedDepreciation and bookValue
         AccumulatedDepreciation = 0.0
@@ -111,7 +121,7 @@ CONTAINS
                 EXIT
             END IF
         END DO
-        WRITE(*, '(/)')
+        WRITE(*, '(A)') ""
 
     END SUBROUTINE CalculateDecliningBalance
 
@@ -120,9 +130,7 @@ CONTAINS
         IMPLICIT NONE
 
         DOUBLE PRECISION, INTENT(IN) :: InitialCost, SalvageValue, UsefulLife
-        DOUBLE PRECISION :: DepreciationRate
-        DOUBLE PRECISION :: DepreciationExpense, AccumulatedDepreciation, BookValue
-        INTEGER :: Year
+        DOUBLE PRECISION :: DepreciationRate, DepreciationExpense, AccumulatedDepreciation, BookValue
 
         ! Initialize accumulatedDepreciation and bookValue
         AccumulatedDepreciation = 0.0
@@ -152,7 +160,7 @@ CONTAINS
                 EXIT
             END IF
         END DO
-        WRITE(*, '(/)')
+        WRITE(*, '(A)') ""
 
     END SUBROUTINE CalculateDoubleDecliningBalance
 
@@ -162,7 +170,6 @@ CONTAINS
 
         DOUBLE PRECISION, INTENT(IN) :: InitialCost, SalvageValue, UsefulLife
         DOUBLE PRECISION :: DepreciationExpense, AccumulatedDepreciation, BookValue
-        INTEGER :: Year
         INTEGER :: SumOfYears
 
         ! Calculate the sum of the years' digits
@@ -184,7 +191,7 @@ CONTAINS
             BookValue = BookValue - DepreciationExpense
             WRITE(*, RowContentFormat) Year, DepreciationExpense, AccumulatedDepreciation, BookValue
         END DO
-        WRITE(*, '(/)')
+        WRITE(*, '(A)') ""
 
     END SUBROUTINE CalculateSYD
 
