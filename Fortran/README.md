@@ -3,10 +3,262 @@
 
 ### \<List>
 
+- [Depreciation Calculator 2 (2024.04.22)](#depreciation-calculator-2-20240422)
 - [Depreciation Calculator (2024.04.20)](#depreciation-calculator-20240420)
 - [Compound Interest Calculator 2 (2023.12.16)](#compound-interest-calculator-2-20231216)
 - [Compound Interest Calculator (2023.12.07)](#compound-interest-calculator-20231207)
 
+
+## [Depreciation Calculator 2 (2024.04.22)](#list)
+
+- Add various methods of depreciation  
+  - Declining Balance Method
+  - Double Declining Balance Method
+  - Sum-of-the-Years' Digits Method
+- Future Improvements
+  - Calculation of depreciation adjustment related with tax accounting
+  - Consideration of memorandum value
+- Code and Output
+  <details>
+    <summary>Code : DepreciationCalculator2.f95</summary>
+
+    ```fortran
+    MODULE GlobalFormats
+
+        IMPLICIT NONE
+
+        ! Declare global variables for formatting
+        CHARACTER(LEN=19) :: ColumnNameFormat
+        CHARACTER(LEN=25) :: RowContentFormat
+
+    END MODULE GlobalFormats
+    ```
+    ```fortran
+    PROGRAM DepreciationCalculator2
+
+        USE GlobalFormats
+
+        IMPLICIT NONE
+
+        DOUBLE PRECISION :: InitialCost, SalvageValue, UsefulLife
+        DOUBLE PRECISION :: DepreciationRate
+        INTEGER :: Year
+
+        ! Set column and row formatting
+        ColumnNameFormat = "(A6, A16, A16, A16)"
+        RowContentFormat = "(I6, F16.2, F16.2, F16.2)"
+
+        ! Display program information
+        WRITE(*, '(A)', ADVANCE='NO')  "Depreciation Calculator Ver.2"
+        WRITE(*, '(A/)') " (2024.04.22)"
+
+        ! Get user input
+        WRITE(*, '(A)', ADVANCE='NO') "  Enter the initial cost of the asset           : "; READ *, InitialCost
+        WRITE(*, '(A)', ADVANCE='NO') "  Enter the salvage value of the asset          : "; READ *, SalvageValue
+        WRITE(*, '(A)', ADVANCE='NO') "  Enter the useful life of the asset (in years) : "; READ *, UsefulLife
+        WRITE(*, '(A)') "  Enter the depreciation rate(%)"
+        WRITE(*, '(A)', ADVANCE='NO') "    (Default: 2 / useful life, ≒ DDB)           : "; READ *, DepreciationRate
+
+        ! Notification of specific details
+        WRITE(*, '(/A)') "※ In declining balance method and double declining balance depreciation, "
+        WRITE(*, '(A)')  "  the salvage value is not recognized in the calculation of the depreciation base."
+        WRITE(*, '(/)')
+
+        ! Set default value of the depreciation rate for DB method
+        IF (DepreciationRate == 0.0) THEN
+            DepreciationRate = (2 / UsefulLife) * 100
+        END IF
+
+        ! Call the custom functions to calculate depreciation
+        CALL CalculateStraightLine(InitialCost, SalvageValue, UsefulLife)
+        CALL CalculateDecliningBalance(InitialCost, SalvageValue, UsefulLife, DepreciationRate)
+        CALL CalculateDoubleDecliningBalance(InitialCost, SalvageValue, UsefulLife)
+        CALL CalculateSYD(InitialCost, SalvageValue, UsefulLife)
+
+    CONTAINS
+
+        SUBROUTINE CalculateStraightLine(InitialCost, SalvageValue, UsefulLife)
+        ……
+
+        SUBROUTINE CalculateDecliningBalance(InitialCost, SalvageValue, UsefulLife, DepreciationRate)
+        ……
+        
+        SUBROUTINE CalculateDoubleDecliningBalance(InitialCost, SalvageValue, UsefulLife)
+        ……
+        
+        SUBROUTINE CalculateSYD(InitialCost, SalvageValue, UsefulLife)
+        ……
+        
+    END PROGRAM DepreciationCalculator2
+    ```
+    ```fortran
+        SUBROUTINE CalculateDecliningBalance(InitialCost, SalvageValue, UsefulLife, DepreciationRate)
+
+            IMPLICIT NONE
+
+            DOUBLE PRECISION, INTENT(IN) :: InitialCost, SalvageValue, UsefulLife, DepreciationRate
+            DOUBLE PRECISION :: DepreciationExpense, AccumulatedDepreciation, BookValue
+
+            ! Initialize accumulatedDepreciation and bookValue
+            AccumulatedDepreciation = 0.0
+            BookValue = InitialCost
+
+            ! Print header
+            WRITE(*, '(A, F5.2, A/)') "<Declining Balance Method> (Rate: ", DepreciationRate, "%)"
+            WRITE(*, ColumnNameFormat) "Year", "Depreciation", "Accumulated", "Book"
+            WRITE(*, ColumnNameFormat) "", "Expense", "Depreciation", "Value"
+
+            ! Calculate and print depreciation for each year
+            DO Year = 1, INT(UsefulLife)
+                IF (BookValue * (1 - DepreciationRate / 100) >= SalvageValue) THEN
+                    DepreciationExpense = BookValue * DepreciationRate / 100
+                    AccumulatedDepreciation = AccumulatedDepreciation + DepreciationExpense
+                    BookValue = BookValue - DepreciationExpense
+                ELSE
+                    BookValue = SalvageValue
+                    DepreciationExpense = (InitialCost - SalvageValue) - AccumulatedDepreciation
+                    AccumulatedDepreciation = InitialCost - SalvageValue
+                END IF
+
+                WRITE(*, RowContentFormat) Year, DepreciationExpense, AccumulatedDepreciation, BookValue
+
+                IF (BookValue <= SalvageValue) THEN
+                    EXIT
+                END IF
+            END DO
+            WRITE(*, '(A)') ""
+
+        END SUBROUTINE CalculateDecliningBalance
+    ```
+    ```fortran
+        SUBROUTINE CalculateDoubleDecliningBalance(InitialCost, SalvageValue, UsefulLife)
+
+            IMPLICIT NONE
+
+            DOUBLE PRECISION, INTENT(IN) :: InitialCost, SalvageValue, UsefulLife
+            DOUBLE PRECISION :: DepreciationRate, DepreciationExpense, AccumulatedDepreciation, BookValue
+
+            ! Initialize accumulatedDepreciation and bookValue
+            AccumulatedDepreciation = 0.0
+            BookValue = InitialCost
+            DepreciationRate = (2 / UsefulLife) * 100
+
+            ! Print header
+            WRITE(*, '(A, F5.2, A/)') "<Double Declining Balance Method> (Rate: ", DepreciationRate, "%)"
+            WRITE(*, ColumnNameFormat) "Year", "Depreciation", "Accumulated", "Book"
+            WRITE(*, ColumnNameFormat) "", "Expense", "Depreciation", "Value"
+
+            ! Calculate and print depreciation for each year
+            DO Year = 1, INT(UsefulLife)
+                IF (BookValue * (1 - DepreciationRate / 100) >= SalvageValue) THEN
+                    DepreciationExpense = BookValue * DepreciationRate / 100
+                    AccumulatedDepreciation = AccumulatedDepreciation + DepreciationExpense
+                    BookValue = BookValue - DepreciationExpense
+                ELSE
+                    BookValue = SalvageValue
+                    DepreciationExpense = (InitialCost - SalvageValue) - AccumulatedDepreciation
+                    AccumulatedDepreciation = InitialCost - SalvageValue
+                END IF
+
+                WRITE(*, RowContentFormat) Year, DepreciationExpense, AccumulatedDepreciation, BookValue
+
+                IF (BookValue <= SalvageValue) THEN
+                    EXIT
+                END IF
+            END DO
+            WRITE(*, '(A)') ""
+
+        END SUBROUTINE CalculateDoubleDecliningBalance
+    ```
+    ```fortran
+        SUBROUTINE CalculateSYD(InitialCost, SalvageValue, UsefulLife)
+
+            IMPLICIT NONE
+
+            DOUBLE PRECISION, INTENT(IN) :: InitialCost, SalvageValue, UsefulLife
+            DOUBLE PRECISION :: DepreciationExpense, AccumulatedDepreciation, BookValue
+            INTEGER :: SumOfYears
+
+            ! Calculate the sum of the years' digits
+            SumOfYears = UsefulLife * (UsefulLife + 1) / 2
+
+            ! Initialize accumulatedDepreciation and bookValue
+            AccumulatedDepreciation = 0.0
+            BookValue = InitialCost
+
+            ! Print header
+            WRITE(*, '(A, /)') "<Sum-of-the-Years' Digits Method>"
+            WRITE(*, ColumnNameFormat) "Year", "Depreciation", "Accumulated", "Book"
+            WRITE(*, ColumnNameFormat) "", "Expense", "Depreciation", "Value"
+
+            ! Calculate and print depreciation for each year
+            DO Year = 1, INT(UsefulLife)
+                DepreciationExpense = (InitialCost - SalvageValue) * (UsefulLife - Year + 1) / SumOfYears
+                AccumulatedDepreciation = AccumulatedDepreciation + DepreciationExpense
+                BookValue = BookValue - DepreciationExpense
+                WRITE(*, RowContentFormat) Year, DepreciationExpense, AccumulatedDepreciation, BookValue
+            END DO
+            WRITE(*, '(A)') ""
+
+        END SUBROUTINE CalculateSYD
+    ```
+  </details>
+  <details open="">
+    <summary>Output</summary>
+
+    ```fortran
+    Depreciation Calculator Ver.2 (2024.04.22)
+
+      Enter the initial cost of the asset           : 11000
+      Enter the salvage value of the asset          : 1000
+      Enter the useful life of the asset (in years) : 5
+      Enter the depreciation rate(%)
+        (Default: 2 / useful life, ≒ DDB)           : 50
+
+    ※ In declining balance method and double declining balance depreciation, 
+      the salvage value is not recognized in the calculation of the depreciation base.
+
+
+    <Straight-Line Method>
+
+     Year    Depreciation     Accumulated            Book
+                  Expense    Depreciation           Value
+        1         2000.00         2000.00         9000.00
+        2         2000.00         4000.00         7000.00
+        3         2000.00         6000.00         5000.00
+        4         2000.00         8000.00         3000.00
+        5         2000.00        10000.00         1000.00
+
+    <Declining Balance Method> (Rate: 50.00%)
+
+     Year    Depreciation     Accumulated            Book
+                  Expense    Depreciation           Value
+        1         5500.00         5500.00         5500.00
+        2         2750.00         8250.00         2750.00
+        3         1375.00         9625.00         1375.00
+        4          375.00        10000.00         1000.00
+
+    <Double Declining Balance Method> (Rate: 40.00%)
+
+     Year    Depreciation     Accumulated            Book
+                  Expense    Depreciation           Value
+        1         4400.00         4400.00         6600.00
+        2         2640.00         7040.00         3960.00
+        3         1584.00         8624.00         2376.00
+        4          950.40         9574.40         1425.60
+        5          425.60        10000.00         1000.00
+
+    <Sum-of-the-Years' Digits Method>
+
+     Year    Depreciation     Accumulated            Book
+                  Expense    Depreciation           Value
+        1         3333.33         3333.33         7666.67
+        2         2666.67         6000.00         5000.00
+        3         2000.00         8000.00         3000.00
+        4         1333.33         9333.33         1666.67
+        5          666.67        10000.00         1000.00
+    ```
+  </details>
 
 
 ## [Depreciation Calculator (2024.04.20)](#list)
