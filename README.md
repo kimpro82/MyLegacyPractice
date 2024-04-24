@@ -27,6 +27,7 @@ Being Great Gatsby with legacy language programming
 
 ## [Fortran](/Fortran/)
 
+  - [Depreciation Calculator 2 (2024.04.22)](/Fortran/README.md#compound-interest-calculator-2-20231216)
   - [Depreciation Calculator (2024.04.20)](/Fortran/README.md#depreciation-calculator-20240420)
   - [Compound Interest Calculator 2 (2023.12.16)](/Fortran/README.md#compound-interest-calculator-2-20231216)
   - [Compound Interest Calculator (2023.12.07)](/Fortran/README.md#compound-interest-calculator-20231207)
