@@ -3,7 +3,7 @@
 
 ### \<List>
 
-- [Depreciation Calculator 2 (2024.04.22)](#compound-interest-calculator-2-20231216)
+- [Depreciation Calculator 2 (2024.04.22)](#depreciation-calculator-2-20240422)
 - [Depreciation Calculator (2024.04.20)](#depreciation-calculator-20240420)
 - [Compound Interest Calculator 2 (2023.12.16)](#compound-interest-calculator-2-20231216)
 - [Compound Interest Calculator (2023.12.07)](#compound-interest-calculator-20231207)
