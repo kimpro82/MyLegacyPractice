@@ -297,8 +297,8 @@
   - Double Declining Balance Method
   - Sum-of-the-Years' Digits Method
 - Future Improvements
-  - Calculation of depreciation adjustment related with tax accounting
-  - Consideration of memorandum value
+  - ~~Calculation of depreciation adjustment related with tax accounting~~
+  - ~~Consideration of memorandum value~~
 - Code and Output
   <details>
     <summary>Code : DepreciationCalculator2.f95</summary>
@@ -575,7 +575,7 @@
 - Calculate depreciation only using the straight-line method
 - Future Improvements
   - Add various methods of depreciation  
-    : Declining Balance Method, Accelerated Depreciation Method, Sum-of-the-Years’ Digits Method, etc.
+    : Declining Balance Method, Accelerated Depreciation Method, Sum-of-the-Years’ Digits Method, etc. → [Done](#depreciation-calculator-2-20240422)
 - Code and Output
   <details>
     <summary>Code : DepreciationCalculator.f95</summary>
