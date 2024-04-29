@@ -373,6 +373,34 @@
     END PROGRAM DepreciationCalculator2
     ```
     ```fortran
+        SUBROUTINE CalculateStraightLine(InitialCost, SalvageValue, UsefulLife)
+
+            IMPLICIT NONE
+
+            DOUBLE PRECISION, INTENT(IN) :: InitialCost, SalvageValue, UsefulLife
+            DOUBLE PRECISION :: DepreciationExpense, AccumulatedDepreciation, BookValue
+
+            ! Initialize accumulatedDepreciation and bookValue
+            AccumulatedDepreciation = 0.0
+            BookValue = InitialCost
+
+            ! Print header
+            WRITE(*, '(A, /)') "<Straight-Line Method>"
+            WRITE(*, ColumnNameFormat) "Year", "Depreciation", "Accumulated", "Book"
+            WRITE(*, ColumnNameFormat) "", "Expense", "Depreciation", "Value"
+
+            ! Calculate and print depreciation for each year
+            DO Year = 1, INT(UsefulLife)
+                DepreciationExpense = (InitialCost - SalvageValue) / UsefulLife
+                AccumulatedDepreciation = AccumulatedDepreciation + DepreciationExpense
+                BookValue = BookValue - DepreciationExpense
+                WRITE(*, RowContentFormat) Year, DepreciationExpense, AccumulatedDepreciation, BookValue
+            END DO
+            WRITE(*, '(A)') ""
+
+        END SUBROUTINE CalculateStraightLine
+    ```
+    ```fortran
         SUBROUTINE CalculateDecliningBalance(InitialCost, SalvageValue, UsefulLife, DepreciationRate)
 
             IMPLICIT NONE
