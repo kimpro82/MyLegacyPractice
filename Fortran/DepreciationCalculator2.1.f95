@@ -107,7 +107,8 @@ CONTAINS
         WRITE(*, '(A)', ADVANCE='NO') "  Enter the initial cost of the asset           : "
         READ *, InitialCost
 
-        WRITE(*, '(A)', ADVANCE='NO') "  Enter the salvage value of the asset          : "
+        WRITE(*, '(A)')               "  Enter the salvage value of the asset"
+        WRITE(*, '(A)', ADVANCE='NO') "    (or the memorandum value)                   : "
         READ *, SalvageValue
 
         WRITE(*, '(A)', ADVANCE='NO') "  Enter the useful life of the asset (in years) : "
