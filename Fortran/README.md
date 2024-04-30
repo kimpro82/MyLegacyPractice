@@ -41,7 +41,7 @@
 
       ! Set column and row formatting
       CALL SetTableFormats(TableColumnNameFormat, TableRowContentFormat, &
-                          TableTitleFormatWithRate, TableTitleFormatWithoutRate)
+                           TableTitleFormatWithRate, TableTitleFormatWithoutRate)
 
       ! Display program information
       CALL PrintProgramInfo()
@@ -61,7 +61,7 @@
   CONTAINS
 
       SUBROUTINE SetTableFormats(TableColumnNameFormat, TableRowContentFormat, &
-                                TableTitleFormatWithRate, TableTitleFormatWithoutRate)
+                                 TableTitleFormatWithRate, TableTitleFormatWithoutRate)
       ……
 
       SUBROUTINE PrintProgramInfo()
@@ -80,14 +80,14 @@
       ……
 
       SUBROUTINE PrintDepreciationTableRow(Year, DepreciationExpense, &
-                                          AccumulatedDepreciation, BookValue)
+                                           AccumulatedDepreciation, BookValue)
       ……
 
       SUBROUTINE CalculateStraightLine(InitialCost, SalvageValue, UsefulLife)
       ……
 
       SUBROUTINE CalculateDecliningBalance(InitialCost, SalvageValue, &
-                                          UsefulLife, DepreciationRate)
+                                           UsefulLife, DepreciationRate)
       ……
 
       SUBROUTINE CalculateDoubleDecliningBalance(InitialCost, SalvageValue, UsefulLife)
@@ -100,11 +100,11 @@
   ```
   ```fortran
       SUBROUTINE SetTableFormats(TableColumnNameFormat, TableRowContentFormat, &
-                                TableTitleFormatWithRate, TableTitleFormatWithoutRate)
+                                 TableTitleFormatWithRate, TableTitleFormatWithoutRate)
 
           IMPLICIT NONE
           CHARACTER(*), INTENT(OUT) :: TableColumnNameFormat, TableRowContentFormat, &
-                                      TableTitleFormatWithRate, TableTitleFormatWithoutRate
+                                       TableTitleFormatWithRate, TableTitleFormatWithoutRate
 
           ! Set column and row formatting
           TableColumnNameFormat = "(A6, A16, A16, A16)"
@@ -144,7 +144,8 @@
           WRITE(*, '(A)', ADVANCE='NO') "  Enter the initial cost of the asset           : "
           READ *, InitialCost
 
-          WRITE(*, '(A)', ADVANCE='NO') "  Enter the salvage value of the asset          : "
+          WRITE(*, '(A)')               "  Enter the salvage value of the asset"
+          WRITE(*, '(A)', ADVANCE='NO') "    (or the memorandum value)                   : "
           READ *, SalvageValue
 
           WRITE(*, '(A)', ADVANCE='NO') "  Enter the useful life of the asset (in years) : "
@@ -181,7 +182,7 @@
           ! Print the header for the specified depreciation method
           IF (PRESENT(DepreciationRate)) THEN
               WRITE(*, TableTitleFormatWithRate) "<", MethodName, ">", &
-                                                " (Rate: ", DepreciationRate, "%)"
+                                                 " (Rate: ", DepreciationRate, "%)"
           ELSE
               WRITE(*, TableTitleFormatWithoutRate) "<", MethodName, ">"
           END IF
@@ -192,7 +193,7 @@
   ```
   ```fortran
       SUBROUTINE PrintDepreciationTableRow(Year, DepreciationExpense, &
-                                          AccumulatedDepreciation, BookValue)
+                                           AccumulatedDepreciation, BookValue)
 
           IMPLICIT NONE
           INTEGER, INTENT(IN) :: Year
@@ -214,7 +215,7 @@
           DO Year = 1, INT(UsefulLife)
               ……
               CALL PrintDepreciationTableRow(Year, DepreciationExpense, &
-                                            AccumulatedDepreciation, BookValue)
+                                             AccumulatedDepreciation, BookValue)
           END DO
           ……
 
@@ -222,7 +223,7 @@
   ```
   ```fortran
       SUBROUTINE CalculateDecliningBalance(InitialCost, SalvageValue, &
-                                          UsefulLife, DepreciationRate)
+                                           UsefulLife, DepreciationRate)
 
           ……
 
@@ -232,7 +233,7 @@
               ……
 
               CALL PrintDepreciationTableRow(Year, DepreciationExpense, &
-                                            AccumulatedDepreciation, BookValue)
+                                             AccumulatedDepreciation, BookValue)
 
               ……
           END DO
@@ -251,7 +252,7 @@
               ……
 
               CALL PrintDepreciationTableRow(Year, DepreciationExpense, &
-                                            AccumulatedDepreciation, BookValue)
+                                             AccumulatedDepreciation, BookValue)
 
               ……
           END DO
@@ -269,7 +270,7 @@
           DO Year = 1, INT(UsefulLife)
               ……
               CALL PrintDepreciationTableRow(Year, DepreciationExpense, &
-                                            AccumulatedDepreciation, BookValue)
+                                             AccumulatedDepreciation, BookValue)
           END DO
           ……
 
@@ -285,7 +286,24 @@
   ※ In declining balance method and double declining balance depreciation, 
     the salvage value is not recognized in the calculation of the depreciation base.
 
-    Enter the initial cost of the asset           : ……
+    Enter the initial cost of the asset           : 11000
+    Enter the salvage value of the asset
+      (or the memorandum value)                   : 1000
+    Enter the useful life of the asset (in years) : 5
+    Enter the depreciation rate(%)
+      (Default: 2 / useful life, ≒ DDB)           : 50
+
+  <Straight-Line Method>
+
+   Year    Depreciation     Accumulated            Book
+                Expense    Depreciation           Value
+      1         2000.00         2000.00         9000.00
+      2         2000.00         4000.00         7000.00
+      3         2000.00         6000.00         5000.00
+      4         2000.00         8000.00         3000.00
+      5         2000.00        10000.00         1000.00
+
+  ……
   ```
   </details>
 
