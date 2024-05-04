@@ -3,11 +3,137 @@
 
 ### \<List>
 
+- [Read CSV File Practice (2024.05.04)](#read-csv-file-practice-20240504)
 - [Depreciation Calculator 2.1 (2024.04.29)](#depreciation-calculator-21-20240429)
 - [Depreciation Calculator 2 (2024.04.22)](#depreciation-calculator-2-20240422)
 - [Depreciation Calculator (2024.04.20)](#depreciation-calculator-20240420)
 - [Compound Interest Calculator 2 (2023.12.16)](#compound-interest-calculator-2-20231216)
 - [Compound Interest Calculator (2023.12.07)](#compound-interest-calculator-20231207)
+
+
+## [Read CSV File Practice (2024.05.04)](#list)
+
+- Features
+  - The length of the data is allowed to vary, but the width is fixed at two columns.
+  - Output spacing and the position of the header row are specified as constants.
+- Code and Output
+  <details>
+    <summary>Code : ReadCSV.f95</summary>
+
+  ```fortran
+  PROGRAM ReadCSVFile
+
+      IMPLICIT NONE
+
+      ! Constants
+      INTEGER, PARAMETER         :: MaxRows = 1000, MaxCols = 10  ! Maximum number of rows and columns
+      INTEGER, PARAMETER         :: MaxColumnLength = 16          ! Maximum length of each column
+      INTEGER, PARAMETER         :: HeaderRow = 1                 ! Row number containing column headers
+
+      ! Variables
+      CHARACTER(MaxColumnLength) :: DataArray(MaxRows, 2)         ! Array to store data
+      CHARACTER(80)              :: FileName                      ! File name
+      INTEGER                    :: NumRows, i, FileUnit          ! Number of rows and file unit
+      CHARACTER(80)              :: Line                          ! Line read from the file
+
+      ! Get the file name
+      FileName = 'GirlGroups.csv'
+
+      ! Open the data file
+      OPEN(UNIT=FileUnit, FILE=FileName, STATUS='OLD', ACTION='READ')
+
+      ! Initialize the number of rows
+      NumRows = 0
+
+      ! Read the data from the file
+      DO
+          READ(FileUnit, '(A)', END=999) Line
+          NumRows = NumRows + 1
+          ! Split the line into columns
+          CALL SplitLine(Line, DataArray(NumRows, 1), DataArray(NumRows, 2))
+      END DO
+
+  999 CONTINUE
+
+      ! Close the data file
+      CLOSE(UNIT=FileUnit)
+
+      ! Print the data array
+      DO i = 1, NumRows
+          WRITE(*, '(A, A)') DataArray(i, 1), DataArray(i, 2)
+
+          ! Print the line separator
+          IF (i == HeaderRow) THEN
+              WRITE(*, '(A)') REPEAT('-', MaxColumnLength*2)
+          END IF
+      END DO
+
+  CONTAINS
+
+      ! Subroutine to split a line into two columns
+      SUBROUTINE SplitLine(Line, Column1, Column2)
+      ……
+
+  END PROGRAM ReadCSVFile
+  ```
+  ```fortran
+      ! Subroutine to split a line into two columns
+      SUBROUTINE SplitLine(Line, Column1, Column2)
+
+          IMPLICIT NONE
+          CHARACTER(80), INTENT(IN)  :: Line                  ! Input line
+          CHARACTER(MaxColumnLength) :: Column1, Column2      ! Output columns
+          CHARACTER(80)              :: TempLine              ! Temporary line storage
+          INTEGER                    :: Start, End            ! Start and end positions
+
+          TempLine = TRIM(Line)
+          Start = 1
+
+          ! Read the first column until a comma is encountered
+          DO WHILE (Start <= LEN(TempLine) .AND. TempLine(Start:Start) /= ',')
+              Start = Start + 1
+          END DO
+          End = MIN(Start+MaxColumnLength-1, LEN(TempLine))
+          Column1 = TempLine(1:Start-1)
+
+          ! Read the second column from the comma to the end of the line
+          Start = Start + 1
+          Column2 = TempLine(Start:LEN(TempLine))
+
+      END SUBROUTINE SplitLine
+  ```
+  </details>
+  <details open="">
+    <summary>Data : GirlGroups.csv</summary>
+
+  ```csv
+  Group,Member
+  aespa,Karina
+  aespa,Winter
+  aespa,Giselle
+  aespa,Ningning
+  BLACKPINK,Jisoo
+  BLACKPINK,Jennie
+  BLACKPINK,Rosé
+  BLACKPINK,Lisa
+  ```
+  </details>
+  <details open="">
+    <summary>Output</summary>
+
+  ```fortran
+  Group           Member          
+  --------------------------------
+  aespa           Karina          
+  aespa           Winter          
+  aespa           Giselle         
+  aespa           Ningning        
+  BLACKPINK       Jisoo           
+  BLACKPINK       Jennie          
+  BLACKPINK       Rosé           
+  BLACKPINK       Lisa  
+  ```
+  </details>
 
 
 ## [Depreciation Calculator 2.1 (2024.04.29)](#list)
