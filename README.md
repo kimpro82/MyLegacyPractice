@@ -27,6 +27,7 @@ Being Great Gatsby with legacy language programming
 
 ## [Fortran](/Fortran/)
 
+  - [Read CSV File Practice (2024.05.04)](/Fortran/README.md#read-csv-file-practice-20240504)
   - [Depreciation Calculator 2.1 (2024.04.29)](/Fortran/README.md#depreciation-calculator-21-20240429)
   - [Depreciation Calculator 2 (2024.04.22)](/Fortran/README.md#depreciation-calculator-2-20240422)
   - [Depreciation Calculator (2024.04.20)](/Fortran/README.md#depreciation-calculator-20240420)
