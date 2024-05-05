@@ -345,7 +345,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
     - QuickBASIC (Wikipedia)  
       https://en.wikipedia.org/wiki/QBasic
   - QBasic
-    - Online IDE for QBASIC  
+    - Online IDE for QBasic  
       https://repl.it/
     - QBasic/Full Book View (Wikibooks)  
       https://en.wikibooks.org/wiki/QBasic/Full_Book_View
