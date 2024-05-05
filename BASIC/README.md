@@ -11,7 +11,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 - [Draw A Car (2022.02.09)](#draw-a-car-20220209)
 - [Play Music (2021.02.20)](#play-music-20210220)
 - [Hello World (2020.02.27)](#hello-world-20200227)
-- [BASIC References (2020.02.25)](#basic-references-20200225)
+- [References (2020.02.25)](#references-20200225)
 
 
 ## [Decimal/Hexadecimal Convertor (2023.12.10)](#list)
@@ -333,29 +333,27 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   </details>
 
 
-## [BASIC References (2020.02.25)](#list)
+## [References (2020.02.25)](#list)
 
   <details open="">
-    <summary>References</summary>
+    <summary>Links</summary>
 
-  - Online IDE for QBASIC  
-    https://repl.it/
-
-  - QBasic/Full Book View (Wikibooks)  
-    https://en.wikibooks.org/wiki/QBasic/Full_Book_View
-
-  - QBasic / QB64 Tutorial List (SchoolFreeware)  
-    https://www.schoolfreeware.com/QBasic_Tutorials_-_QB64_Tutorials_-_Programming_And_Code_Examples.html  
-    
-  - Programmed Lessons in QBasic (Central Connecticut State University)  
-    https://chortle.ccsu.edu/QBasic/ 
-
-  - QBasic Tutorials and Articles (QBasic Cafe)  
-    https://www.qbasic.net/en/qbasic-articles/
-
-  - QuickBASIC (Wikipedia)  
-    https://en.wikipedia.org/wiki/QBasic
-
-  - Basic (Wikipedia)  
-    https://en.wikipedia.org/wiki/BASIC
+  - BASIC
+    - BASIC (Wikipedia)  
+      https://en.wikipedia.org/wiki/BASIC
+  - QuickBASIC
+    - QuickBASIC (Wikipedia)  
+      https://en.wikipedia.org/wiki/QBasic
+  - QBasic
+    - Online IDE for QBASIC  
+      https://repl.it/
+    - QBasic/Full Book View (Wikibooks)  
+      https://en.wikibooks.org/wiki/QBasic/Full_Book_View
+    - Programmed Lessons in QBasic (Central Connecticut State University)  
+      https://chortle.ccsu.edu/QBasic/ 
+    - QBasic Tutorials and Articles (QBasic Cafe)  
+      https://www.qbasic.net/en/qbasic-articles/
+  - QB64
+    - QBasic / QB64 Tutorial List (SchoolFreeware)  
+      https://www.schoolfreeware.com/QBasic_Tutorials_-_QB64_Tutorials_-_Programming_And_Code_Examples.html     
   </details>
