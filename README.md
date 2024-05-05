@@ -18,7 +18,7 @@ Being Great Gatsby with legacy language programming
   - [Draw A Car (2022.02.09)](/BASIC/README.md#draw-a-car-20220209)
   - [Play Music (2021.02.20)](/BASIC/README.md#play-music-20210220)
   - [Hello World (2020.02.27)](/BASIC/README.md#hello-world-20200227)
-  - [BASIC References (2020.02.25)](/BASIC/README.md#basic-references-20200225)
+  - [References (2020.02.25)](/BASIC/README.md#references-20200225)
 
 ## [COBOL](/COBOL/)
 
