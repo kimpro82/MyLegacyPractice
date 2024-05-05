@@ -16,7 +16,7 @@
 - Features
   - The length of the data is allowed to vary, but the width is fixed at two columns.
   - Output spacing and the position of the header row are specified as constants.
-- Code and Output
+- Code, Example Data and Output
   <details>
     <summary>Code : ReadCSV.f95</summary>
 
@@ -104,7 +104,7 @@
   ```
   </details>
   <details open="">
-    <summary>Data : GirlGroups.csv</summary>
+    <summary>Example Data : GirlGroups.csv</summary>
 
   ```csv
   Group,Member
