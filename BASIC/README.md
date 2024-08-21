@@ -17,7 +17,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 
 ## [Simultaneous Equations Solver (2024.08.20)](#list)
 
-- Linear Equation Solver using Determinant Method
+- System of Linear Equations Calculator using Determinant Method
   - Enter six floating-point numbers: `a`, `b`, `c`, `d`, `e`, and `f`
   - If fewer than six numbers are provided, zeros will be substituted for the missing values
 
