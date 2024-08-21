@@ -6,12 +6,13 @@ Being Great Gatsby with legacy language programming
 
 ## [Ada](/Ada/)
 
-- [Multiplication Table (2024.02.21)](/Ada/README.md#multiplication-table-20240221)
-- [Hello World (2024.02.21)](/Ada/README.md#hello-world-20240221)
+  - [Multiplication Table (2024.02.21)](/Ada/README.md#multiplication-table-20240221)
+  - [Hello World (2024.02.21)](/Ada/README.md#hello-world-20240221)
 
 
 ## [BASIC](/BASIC/)
 
+  - [Simultaneous Equations Solver (2024.08.20)](/BASIC/README.md#simultaneous-equations-solver-20240820)
   - [Decimal/Hexadecimal Convertor (2023.12.10)](/BASIC/README.md#decimalhexadecimal-convertor-20231210)
   - [Line Numbering 2 (2023.07.22)](/BASIC/README.md#line-numbering-2-20230722)
   - [Line Numbering (2023.07.19)](/BASIC/README.md#line-numbering-20230719)
@@ -19,6 +20,7 @@ Being Great Gatsby with legacy language programming
   - [Play Music (2021.02.20)](/BASIC/README.md#play-music-20210220)
   - [Hello World (2020.02.27)](/BASIC/README.md#hello-world-20200227)
   - [References (2020.02.25)](/BASIC/README.md#references-20200225)
+
 
 ## [COBOL](/COBOL/)
 
