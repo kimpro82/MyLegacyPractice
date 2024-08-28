@@ -148,7 +148,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   ![Simultaneous Equations Solver](./Images/SESOLVER.PNG)
 
   <details>
-    <summary>Codes : SESOLVER.BAS</summary>
+    <summary>Code : SESOLVER.BAS</summary>
 
   ```bas
   100 ' Initialize and get input data
@@ -225,7 +225,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   ![Decimal/Hexadecimal Convertor](./Images/GW-BASIC_HEXCONV_RUN.PNG)
 
   <details>
-    <summary>Codes : HEXCONV.BAS</summary>
+    <summary>Code : HEXCONV.BAS</summary>
 
     ```bas
     0 CLS
@@ -285,7 +285,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   </details>
 
   <details open="">
-    <summary>Codes : LINENUM2.BAS</summary>
+    <summary>Code : LINENUM2.BAS</summary>
 
   - Saved in the file
     ```bas
@@ -335,7 +335,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   Ex) Line numbers including decimal points, reversed, or exceeding 65535 ……
 
   <details open="">
-    <summary>Codes : LineNum.bas</summary>
+    <summary>Code : LineNum.bas</summary>
 
   ```bas
   '-10 print "-10"        ' A negative line number causes an error
@@ -377,7 +377,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   ![Draw A Car](Images/QB_DrawingCar.PNG)
 
   <details>
-    <summary>Codes : DrawCar.bas</summary>
+    <summary>Code : DrawCar.bas</summary>
 
   ```bas
   CLS
@@ -429,7 +429,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 - Run by *MS QuickBASIC 4.5*
 
   <details>
-    <summary>Codes : Xerxes.bas</summary>
+    <summary>Code : Xerxes.bas</summary>
 
   - Using `SHELL` function to borrow the `CLS` command from DOS
   ```bas
@@ -439,7 +439,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   > I am generous
   </details>
   <details>
-    <summary>Codes : Sound.bas</summary>
+    <summary>Code : Sound.bas</summary>
 
   - Refer to ☞ https://en.wikibooks.org/wiki/QBasic/Sound
   ```bas
@@ -469,7 +469,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   (* These can't be played directly, but played after downloading.)
 
   <details open="">
-    <summary>Codes : SchoolBell.bas</summary>
+    <summary>Code : SchoolBell.bas</summary>
 
   - Play the same song with the keys of both C major and C minor
   ```bas
@@ -496,7 +496,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 - `PRINT`, not `print`
 
   <details>
-    <summary>Codes : HelloWorld.bas</summary>
+    <summary>Code : HelloWorld.bas</summary>
 
   ```bas
   print "Hello World!"
