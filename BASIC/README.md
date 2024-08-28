@@ -147,8 +147,9 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 
   ![Simultaneous Equations Solver](./Images/SESOLVER.PNG)
 
+- Code : `SESOLVER.BAS`
   <details>
-    <summary>Code : SESOLVER.BAS</summary>
+    <summary>100~160 : Initialize and get input data</summary>
 
   ```bas
   100 ' Initialize and get input data
@@ -160,6 +161,10 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   150 PRINT "Enter coefficients a, b, c, d, e, f (separated by spaces), or Q/q to quit:"
   160 INPUT INPUTDATA$ ' Get user input
   ```
+  </details>
+  <details>
+    <summary>200~250 : Check for quit command or process input</summary>
+
   ```bas
   200 ' Check for quit command or process input
   210 IF INPUTDATA$ = "Q" OR INPUTDATA$ = "q" THEN GOTO 900
@@ -168,6 +173,10 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   240 GOSUB 500 ' Solve the equations
   250 GOTO 150
   ```
+  </details>
+  <details>
+    <summary>300~450 : Parse input or use default values</summary>
+
   ```bas
   300 ' Parse input or use default values
   310 INPUTDATA$ = INPUTDATA$ + " 0 0 0 0 0 0"  ' Pad the input with zeros if fewer than 6 values are provided
@@ -185,6 +194,10 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   430 NEXT I
   450 RETURN
   ```
+  </details>
+  <details>
+    <summary>500~650 : Solve the system of linear equations</summary>
+
   ```bas
   500 ' Solve the system of linear equations
   510 A = COEF#(0): B = COEF#(1): C = COEF#(2)
@@ -201,6 +214,10 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   640 ' It is crazy to handle IF conditions in GW-BASIC!
   650 RETURN
   ```
+  </details>
+  <details>
+    <summary>800~840 : Initialize variables; Not use</summary>
+
   ```bas
   800 ' Initialize variables; Not use
   810 ' FOR I = 0 TO 5
@@ -208,6 +225,10 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   830 ' NEXT I
   840 ' RETURN
   ```
+  </details>
+  <details>
+    <summary>900~920 : Quit the program</summary>
+
   ```bas
   900 ' Quit the program
   910 PRINT "Program terminated."
