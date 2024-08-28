@@ -12,6 +12,7 @@ Being Great Gatsby with legacy language programming
 
 ## [BASIC](/BASIC/)
 
+  - [Lotto 6/45 Number Generator (2024.08.28)](/BASIC/README.md#lotto-645-number-generator-20240828)
   - [Simultaneous Equations Solver (2024.08.20)](/BASIC/README.md#simultaneous-equations-solver-20240820)
   - [Decimal/Hexadecimal Convertor (2023.12.10)](/BASIC/README.md#decimalhexadecimal-convertor-20231210)
   - [Line Numbering 2 (2023.07.22)](/BASIC/README.md#line-numbering-2-20230722)
