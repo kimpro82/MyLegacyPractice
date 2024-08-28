@@ -5,6 +5,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 
 ### \<List>
 
+- [Lotto 6/45 Number Generator (2024.08.28)](#lotto-645-number-generator-20240828)
 - [Simultaneous Equations Solver (2024.08.20)](#simultaneous-equations-solver-20240820)
 - [Decimal/Hexadecimal Convertor (2023.12.10)](#decimalhexadecimal-convertor-20231210)
 - [Line Numbering 2 (2023.07.22)](#line-numbering-2-20230722)
@@ -13,6 +14,129 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 - [Play Music (2021.02.20)](#play-music-20210220)
 - [Hello World (2020.02.27)](#hello-world-20200227)
 - [References (2020.02.25)](#references-20200225)
+
+
+## [Lotto 6/45 Number Generator (2024.08.28)](#list)
+
+- Generates n sets of 7 unique numbers between 1 and 45
+
+  ![Lotto 6/25 by GW-BASIC](./Images/LOTTO.png)
+
+  - If user inputs numbers, those are fixed and others are generated
+  - Displays the numbers in the format: a b c d e f + lucky number
+
+- Code : `LOTTO.BAS`
+  <details>
+    <summary>100~190 : Main part</summary>
+
+  ```bas
+  100 SETSNUM = 4 ' Constant for the number of sets to generate
+  110 RANDOMIZE TIMER ' Initialize random number generator
+
+  120 PRINT "Press ENTER or input your fixed numbers (space-separated):"
+  130 INPUT USERSTR$ ' Get user input
+
+  140 DIM NUMSET(7) ' Declare array to hold one set of numbers
+  150 ' Parse user input and validate
+  160 IF USERSTR$ = "" THEN GOTO 200 ' No input, generate all random
+  170 GOSUB 500 ' Validate and parse user input
+  180 ' If invalid input, re-prompt user
+  190 IF ERRORFLAG = 1 THEN PRINT "Invalid input. Please try again." : GOTO 110
+  ```
+  </details>
+  <details>
+    <summary>200~420 : Start generating sets of numbers</summary>
+
+  ```bas
+  200 ' Start generating sets of numbers
+  210 FOR I = 1 TO SETSNUM ' Generate sets based on the constant
+  220   GOSUB 900 ' Initialize array for each set
+  230   COUNT = 0 ' Reset count for each set
+  240   ' Fill array with user-provided numbers
+  250   FOR J = 1 TO USERINDEX
+  260     NUMSET(J) = USERNUMS(J)
+  270     COUNT = COUNT + 1
+  280   NEXT J
+  290   ' Generate remaining random numbers
+  300   WHILE COUNT < 7 ' Generate random numbers until the total count is 7
+  310     NEWNUM = INT(RND * 45) + 1
+  320     GOSUB 700 ' Check if number is already in the set
+  330     IF INSET = -1 THEN GOTO 310 ' If number is already in the set, generate again
+  340     COUNT = COUNT + 1
+  350     NUMSET(COUNT) = NEWNUM
+  360   WEND
+  370   ' Sort only the numbers from position USERINDEX + 1 to 6, leaving the last number (NUMSET(7)) unsorted
+  380   GOSUB 800 ' Sort the numbers from position USERINDEX + 1 to 6
+  390   ' Display the result with numbers formatted to two characters each
+  400   PRINT USING "## ## ## ## ## ## + ##"; NUMSET(1); NUMSET(2); NUMSET(3); NUMSET(4); NUMSET(5); NUMSET(6); NUMSET(7)
+  410 NEXT I
+  420 END
+  ```
+  </details>
+  <details>
+    <summary>500~690 : Subroutine to validate and parse user input</summary>
+
+  ```bas
+  500 ' Subroutine to validate and parse user input
+  510 DIM USERNUMS(6) ' Maximum 6 numbers can be fixed
+  520 USERINDEX = 0
+  530 ERRORFLAG = 0
+  540 ' Split user input by spaces
+  550 TMP$ = "" ' Initialize temporary string
+  560 FOR K = 1 TO LEN(USERSTR$)
+  570   CHAR$ = MID$(USERSTR$, K, 1)
+  580   IF CHAR$ >= "0" AND CHAR$ <= "9" THEN TMP$ = TMP$ + CHAR$
+  590   IF CHAR$ <> " " AND K < LEN(USERSTR$) THEN GOTO 680
+  600   IF LEN(TMP$) = 0 THEN GOTO 680
+  610   VALNUM = VAL(TMP$)
+  620   IF VALNUM < 1 OR VALNUM > 45 THEN ERRORFLAG = 1 : RETURN
+  630   GOSUB 700 ' Check if number is already in the user input set
+  640   IF INSET = -1 THEN ERRORFLAG = 1 : RETURN
+  650   USERINDEX = USERINDEX + 1
+  660   USERNUMS(USERINDEX) = VALNUM
+  670   TMP$ = ""
+  680 NEXT K
+  690 RETURN
+  ```
+  </details>
+  <details>
+    <summary>700~750 : Subroutine to check if a number is in the set</summary>
+
+  ```bas
+  700 ' Subroutine to check if a number is in the set
+  710 INSET = 0
+  720 FOR L = 1 TO COUNT
+  730   IF NUMSET(L) = NEWNUM THEN INSET = -1 : RETURN
+  740 NEXT L
+  750 RETURN
+  ```
+  </details>
+  <details>
+    <summary>800~880 : Subroutine to sort the numbers from position USERINDEX + 1 to 6</summary>
+
+  ```bas
+  800 ' Subroutine to sort the numbers from position USERINDEX + 1 to 6
+  810 START = USERINDEX + 1
+  820 ENDIDX = 6 ' Sort up to NUMSET(6), excluding NUMSET(7)
+  830 FOR M = START TO ENDIDX - 1
+  840   FOR N = M + 1 TO ENDIDX
+  850     IF NUMSET(M) > NUMSET(N) THEN SWAP NUMSET(M), NUMSET(N)
+  860   NEXT N
+  870 NEXT M
+  880 RETURN
+  ```
+  </details>
+  <details>
+    <summary>900~940 : Subroutine to initialize the NUMSET array</summary>
+
+  ```bas
+  900 ' Subroutine to initialize the NUMSET array
+  910 FOR T = 1 TO 7
+  920   NUMSET(T) = 0
+  930 NEXT T
+  940 RETURN
+  ```
+  </details>
 
 
 ## [Simultaneous Equations Solver (2024.08.20)](#list)
@@ -90,6 +214,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   920 END
   ```
   </details>
+
 
 ## [Decimal/Hexadecimal Convertor (2023.12.10)](#list)
 
