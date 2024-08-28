@@ -31,7 +31,7 @@
 270     COUNT = COUNT + 1
 280   NEXT J
 290   ' Generate remaining random numbers
-300   WHILE COUNT < 7 ' Generate only 6 random numbers
+300   WHILE COUNT < 7 ' Generate random numbers until the total count is 7
 310     NEWNUM = INT(RND * 45) + 1
 320     GOSUB 700 ' Check if number is already in the set
 330     IF INSET = -1 THEN GOTO 310 ' If number is already in the set, generate again
