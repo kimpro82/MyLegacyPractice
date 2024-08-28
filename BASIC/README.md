@@ -22,6 +22,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   - If user inputs numbers, those are fixed and others are generated
   - Displays the numbers in the format: a b c d e f + lucky number
 - Migrated from https://github.com/kimpro82/MyBizApps/pull/61
+
   ![Lotto 6/25 by GW-BASIC](./Images/LOTTO.png)
 
 - Code : `LOTTO.BAS`
