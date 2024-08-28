@@ -19,11 +19,10 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 ## [Lotto 6/45 Number Generator (2024.08.28)](#list)
 
 - Generates n sets of 7 unique numbers between 1 and 45
-
-  ![Lotto 6/25 by GW-BASIC](./Images/LOTTO.png)
-
   - If user inputs numbers, those are fixed and others are generated
   - Displays the numbers in the format: a b c d e f + lucky number
+
+  ![Lotto 6/25 by GW-BASIC](./Images/LOTTO.png)
 
 - Code : `LOTTO.BAS`
   <details>
