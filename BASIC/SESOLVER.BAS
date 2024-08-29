@@ -5,7 +5,7 @@
 50  ' Program Description: This program solves a system of linear equations:
 60  ' ax + by = c
 70  ' dx + ey = f
-80  ' The user inputs the coefficients a, b, c, d, e, f. If no input is provided, random values are generated.
+80  ' The user inputs 6 coefficients a~f. If fewer, zeros are used for the missing ones.
 90  ' The solution for x and y is calculated and displayed. Enter Q or q to quit.
 
 100 ' Initialize and get input data
@@ -20,7 +20,7 @@
 200 ' Check for quit command or process input
 210 IF INPUTDATA$ = "Q" OR INPUTDATA$ = "q" THEN GOTO 900
 220 ' GOSUB 800 ' Initialize variables; Not use
-230 GOSUB 300 ' Process input or generate random values
+230 GOSUB 300 ' Process input or substitute missing values with zeros
 240 GOSUB 500 ' Solve the equations
 250 GOTO 150
 
