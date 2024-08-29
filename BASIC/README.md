@@ -169,7 +169,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   200 ' Check for quit command or process input
   210 IF INPUTDATA$ = "Q" OR INPUTDATA$ = "q" THEN GOTO 900
   220 ' GOSUB 800 ' Initialize variables; Not use
-  230 GOSUB 300 ' Process input or generate random values
+  230 GOSUB 300 ' Process input or substitute missing values with zeros
   240 GOSUB 500 ' Solve the equations
   250 GOTO 150
   ```
