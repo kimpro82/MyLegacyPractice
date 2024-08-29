@@ -5,6 +5,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 
 ### \<List>
 
+- [Lotto 6/45 Number Generator (2024.08.28)](#lotto-645-number-generator-20240828)
 - [Simultaneous Equations Solver (2024.08.20)](#simultaneous-equations-solver-20240820)
 - [Decimal/Hexadecimal Convertor (2023.12.10)](#decimalhexadecimal-convertor-20231210)
 - [Line Numbering 2 (2023.07.22)](#line-numbering-2-20230722)
@@ -15,6 +16,129 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 - [References (2020.02.25)](#references-20200225)
 
 
+## [Lotto 6/45 Number Generator (2024.08.28)](#list)
+
+- Generates n sets of 7 unique numbers between 1 and 45
+  - If user inputs numbers, those are fixed and others are generated
+  - Displays the numbers in the format: a b c d e f + lucky number
+- Migrated from https://github.com/kimpro82/MyBizApps/pull/61
+
+  ![Lotto 6/25 by GW-BASIC](./Images/LOTTO.png)
+
+- Code : `LOTTO.BAS`
+  <details>
+    <summary>100~190 : Main part</summary>
+
+  ```bas
+  100 SETSNUM = 4 ' Constant for the number of sets to generate
+  110 RANDOMIZE TIMER ' Initialize random number generator
+
+  120 PRINT "Press ENTER or input your fixed numbers (space-separated):"
+  130 INPUT USERSTR$ ' Get user input
+
+  140 DIM NUMSET(7) ' Declare array to hold one set of numbers
+  150 ' Parse user input and validate
+  160 IF USERSTR$ = "" THEN GOTO 200 ' No input, generate all random
+  170 GOSUB 500 ' Validate and parse user input
+  180 ' If invalid input, re-prompt user
+  190 IF ERRORFLAG = 1 THEN PRINT "Invalid input. Please try again." : GOTO 110
+  ```
+  </details>
+  <details>
+    <summary>200~420 : Start generating sets of numbers</summary>
+
+  ```bas
+  200 ' Start generating sets of numbers
+  210 FOR I = 1 TO SETSNUM ' Generate sets based on the constant
+  220   GOSUB 900 ' Initialize array for each set
+  230   COUNT = 0 ' Reset count for each set
+  240   ' Fill array with user-provided numbers
+  250   FOR J = 1 TO USERINDEX
+  260     NUMSET(J) = USERNUMS(J)
+  270     COUNT = COUNT + 1
+  280   NEXT J
+  290   ' Generate remaining random numbers
+  300   WHILE COUNT < 7 ' Generate random numbers until the total count is 7
+  310     NEWNUM = INT(RND * 45) + 1
+  320     GOSUB 700 ' Check if number is already in the set
+  330     IF INSET = -1 THEN GOTO 310 ' If number is already in the set, generate again
+  340     COUNT = COUNT + 1
+  350     NUMSET(COUNT) = NEWNUM
+  360   WEND
+  370   ' Sort only the numbers from position USERINDEX + 1 to 6, leaving the last number (NUMSET(7)) unsorted
+  380   GOSUB 800 ' Sort the numbers from position USERINDEX + 1 to 6
+  390   ' Display the result with numbers formatted to two characters each
+  400   PRINT USING "## ## ## ## ## ## + ##"; NUMSET(1); NUMSET(2); NUMSET(3); NUMSET(4); NUMSET(5); NUMSET(6); NUMSET(7)
+  410 NEXT I
+  420 END
+  ```
+  </details>
+  <details>
+    <summary>500~690 : Subroutine to validate and parse user input</summary>
+
+  ```bas
+  500 ' Subroutine to validate and parse user input
+  510 DIM USERNUMS(6) ' Maximum 6 numbers can be fixed
+  520 USERINDEX = 0
+  530 ERRORFLAG = 0
+  540 ' Split user input by spaces
+  550 TMP$ = "" ' Initialize temporary string
+  560 FOR K = 1 TO LEN(USERSTR$)
+  570   CHAR$ = MID$(USERSTR$, K, 1)
+  580   IF CHAR$ >= "0" AND CHAR$ <= "9" THEN TMP$ = TMP$ + CHAR$
+  590   IF CHAR$ <> " " AND K < LEN(USERSTR$) THEN GOTO 680
+  600   IF LEN(TMP$) = 0 THEN GOTO 680
+  610   VALNUM = VAL(TMP$)
+  620   IF VALNUM < 1 OR VALNUM > 45 THEN ERRORFLAG = 1 : RETURN
+  630   GOSUB 700 ' Check if number is already in the user input set
+  640   IF INSET = -1 THEN ERRORFLAG = 1 : RETURN
+  650   USERINDEX = USERINDEX + 1
+  660   USERNUMS(USERINDEX) = VALNUM
+  670   TMP$ = ""
+  680 NEXT K
+  690 RETURN
+  ```
+  </details>
+  <details>
+    <summary>700~750 : Subroutine to check if a number is in the set</summary>
+
+  ```bas
+  700 ' Subroutine to check if a number is in the set
+  710 INSET = 0
+  720 FOR L = 1 TO COUNT
+  730   IF NUMSET(L) = NEWNUM THEN INSET = -1 : RETURN
+  740 NEXT L
+  750 RETURN
+  ```
+  </details>
+  <details>
+    <summary>800~880 : Subroutine to sort the numbers from position USERINDEX + 1 to 6</summary>
+
+  ```bas
+  800 ' Subroutine to sort the numbers from position USERINDEX + 1 to 6
+  810 START = USERINDEX + 1
+  820 ENDIDX = 6 ' Sort up to NUMSET(6), excluding NUMSET(7)
+  830 FOR M = START TO ENDIDX - 1
+  840   FOR N = M + 1 TO ENDIDX
+  850     IF NUMSET(M) > NUMSET(N) THEN SWAP NUMSET(M), NUMSET(N)
+  860   NEXT N
+  870 NEXT M
+  880 RETURN
+  ```
+  </details>
+  <details>
+    <summary>900~940 : Subroutine to initialize the NUMSET array</summary>
+
+  ```bas
+  900 ' Subroutine to initialize the NUMSET array
+  910 FOR T = 1 TO 7
+  920   NUMSET(T) = 0
+  930 NEXT T
+  940 RETURN
+  ```
+  </details>
+
+
 ## [Simultaneous Equations Solver (2024.08.20)](#list)
 
 - System of Linear Equations Calculator using Determinant Method
@@ -23,8 +147,9 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 
   ![Simultaneous Equations Solver](./Images/SESOLVER.PNG)
 
+- Code : `SESOLVER.BAS`
   <details>
-    <summary>Codes : SESOLVER.BAS</summary>
+    <summary>100~160 : Initialize and get input data</summary>
 
   ```bas
   100 ' Initialize and get input data
@@ -36,14 +161,22 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   150 PRINT "Enter coefficients a, b, c, d, e, f (separated by spaces), or Q/q to quit:"
   160 INPUT INPUTDATA$ ' Get user input
   ```
+  </details>
+  <details>
+    <summary>200~250 : Check for quit command or process input</summary>
+
   ```bas
   200 ' Check for quit command or process input
   210 IF INPUTDATA$ = "Q" OR INPUTDATA$ = "q" THEN GOTO 900
   220 ' GOSUB 800 ' Initialize variables; Not use
-  230 GOSUB 300 ' Process input or generate random values
+  230 GOSUB 300 ' Process input or substitute missing values with zeros
   240 GOSUB 500 ' Solve the equations
   250 GOTO 150
   ```
+  </details>
+  <details>
+    <summary>300~450 : Parse input or use default values</summary>
+
   ```bas
   300 ' Parse input or use default values
   310 INPUTDATA$ = INPUTDATA$ + " 0 0 0 0 0 0"  ' Pad the input with zeros if fewer than 6 values are provided
@@ -61,6 +194,10 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   430 NEXT I
   450 RETURN
   ```
+  </details>
+  <details>
+    <summary>500~650 : Solve the system of linear equations</summary>
+
   ```bas
   500 ' Solve the system of linear equations
   510 A = COEF#(0): B = COEF#(1): C = COEF#(2)
@@ -77,6 +214,10 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   640 ' It is crazy to handle IF conditions in GW-BASIC!
   650 RETURN
   ```
+  </details>
+  <details>
+    <summary>800~840 : Initialize variables; Not use</summary>
+
   ```bas
   800 ' Initialize variables; Not use
   810 ' FOR I = 0 TO 5
@@ -84,12 +225,17 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   830 ' NEXT I
   840 ' RETURN
   ```
+  </details>
+  <details>
+    <summary>900~920 : Quit the program</summary>
+
   ```bas
   900 ' Quit the program
   910 PRINT "Program terminated."
   920 END
   ```
   </details>
+
 
 ## [Decimal/Hexadecimal Convertor (2023.12.10)](#list)
 
@@ -100,7 +246,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   ![Decimal/Hexadecimal Convertor](./Images/GW-BASIC_HEXCONV_RUN.PNG)
 
   <details>
-    <summary>Codes : HEXCONV.BAS</summary>
+    <summary>Code : HEXCONV.BAS</summary>
 
     ```bas
     0 CLS
@@ -160,7 +306,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   </details>
 
   <details open="">
-    <summary>Codes : LINENUM2.BAS</summary>
+    <summary>Code : LINENUM2.BAS</summary>
 
   - Saved in the file
     ```bas
@@ -210,7 +356,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   Ex) Line numbers including decimal points, reversed, or exceeding 65535 ……
 
   <details open="">
-    <summary>Codes : LineNum.bas</summary>
+    <summary>Code : LineNum.bas</summary>
 
   ```bas
   '-10 print "-10"        ' A negative line number causes an error
@@ -252,7 +398,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   ![Draw A Car](Images/QB_DrawingCar.PNG)
 
   <details>
-    <summary>Codes : DrawCar.bas</summary>
+    <summary>Code : DrawCar.bas</summary>
 
   ```bas
   CLS
@@ -304,7 +450,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 - Run by *MS QuickBASIC 4.5*
 
   <details>
-    <summary>Codes : Xerxes.bas</summary>
+    <summary>Code : Xerxes.bas</summary>
 
   - Using `SHELL` function to borrow the `CLS` command from DOS
   ```bas
@@ -314,7 +460,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   > I am generous
   </details>
   <details>
-    <summary>Codes : Sound.bas</summary>
+    <summary>Code : Sound.bas</summary>
 
   - Refer to ☞ https://en.wikibooks.org/wiki/QBasic/Sound
   ```bas
@@ -344,7 +490,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   (* These can't be played directly, but played after downloading.)
 
   <details open="">
-    <summary>Codes : SchoolBell.bas</summary>
+    <summary>Code : SchoolBell.bas</summary>
 
   - Play the same song with the keys of both C major and C minor
   ```bas
@@ -371,7 +517,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 - `PRINT`, not `print`
 
   <details>
-    <summary>Codes : HelloWorld.bas</summary>
+    <summary>Code : HelloWorld.bas</summary>
 
   ```bas
   print "Hello World!"
