@@ -20,13 +20,13 @@ begin
       begin
         currentTable := (i - 1) * TABLES_PER_GROUP + k;
         result := currentTable * j;
-        
+
         write(currentTable:2, ' * ', j:1, ' = ');
         if result < 10 then
           write('  ', result:1)
         else
           write(' ', result:2);
-        
+
         if k < TABLES_PER_GROUP then
           write('   ');
       end;
