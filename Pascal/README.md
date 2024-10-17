@@ -5,7 +5,7 @@
 
 ### References
 
-- [Wikipedia](https://en.wikipedia.org/) > [Pascal_(programming_language)](https://en.wikipedia.org/wiki/Pascal_(programming_language))
+- [Wikipedia](https://en.wikipedia.org/) > [Pascal (programming language)](https://en.wikipedia.org/wiki/Pascal_(programming_language))
 - [JDoodle](https://www.jdoodle.com/) > [Online Ada Compiler](https://www.jdoodle.com/execute-pascal-online)
 
 
