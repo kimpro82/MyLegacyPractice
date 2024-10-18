@@ -10,6 +10,11 @@ Being Great Gatsby with legacy language programming
   - [Hello World (2024.02.21)](/Ada/README.md#hello-world-20240221)
 
 
+## [ALGOL](/ALGOL/)
+
+  - [Multiplication Table (2024.10.17)](/ALGOL//README.md#multiplication-table-20241017)
+
+
 ## [BASIC](/BASIC/)
 
   - [Lotto 6/45 Number Generator (2024.08.28)](/BASIC/README.md#lotto-645-number-generator-20240828)
@@ -40,4 +45,4 @@ Being Great Gatsby with legacy language programming
 
 ## [Pascal](/Pascal/)
 
-  - [Multiplication Table (2024.10.17)](/Pascal//README.md#multiplication-table-20241017)
+  - [Multiplication Table (2024.10.17)](/Pascal/README.md#multiplication-table-20241017)
