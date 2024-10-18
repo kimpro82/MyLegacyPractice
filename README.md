@@ -12,7 +12,7 @@ Being Great Gatsby with legacy language programming
 
 ## [ALGOL](/ALGOL/)
 
-  - [Multiplication Table (2024.10.17)](/ALGOL//README.md#multiplication-table-20241017)
+  - [Multiplication Table (2024.10.18)](/ALGOL//README.md#multiplication-table-20241018)
 
 
 ## [BASIC](/BASIC/)

@@ -1,4 +1,4 @@
-# [My Pascal Practice](/README.md#algol)
+# [My ALGOL Practice](/README.md#algol)
 
 Even Github has forgotten this ancient language
 
@@ -13,7 +13,7 @@ Even Github has forgotten this ancient language
 
 ### \<List>
 
-- [Multiplication Table (2024.10.18)](#multiplication-table-20241017)
+- [Multiplication Table (2024.10.18)](#multiplication-table-20241018)
 
 
 ## [Multiplication Table (2024.10.18)](#list)
