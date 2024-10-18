@@ -36,3 +36,8 @@ Being Great Gatsby with legacy language programming
   - [Depreciation Calculator (2024.04.20)](/Fortran/README.md#depreciation-calculator-20240420)
   - [Compound Interest Calculator 2 (2023.12.16)](/Fortran/README.md#compound-interest-calculator-2-20231216)
   - [Compound Interest Calculator (2023.12.07)](/Fortran/README.md#compound-interest-calculator-20231207)
+
+
+## [Pascal](/Pascal/)
+
+  - [Multiplication Table (2024.10.17)](/Pascal//README.md#multiplication-table-20241017)
