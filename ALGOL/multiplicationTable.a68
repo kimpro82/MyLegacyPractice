@@ -1,0 +1,27 @@
+#
+  Multiplication Table Generator
+
+  Author : kimpro82
+  Date   : 2024.10.18
+
+  This program generates a multiplication table from 1x1 to 9x9,
+  arranged in three groups of three columns each.
+
+  Note: This program uses nested loops to generate the table and
+        printf for formatted output.
+#
+
+BEGIN
+    FOR group FROM 0 TO 2 DO
+        FOR row FROM 1 TO 9 DO
+            FOR col FROM 1 TO 3 DO
+                INT num := group * 3 + col;
+                INT result := num * row;
+                # printf(($d" * "d" = "2z"   "$, num, row, result)) #       # Unexpected results #
+                printf(($d" * "$, num, $d" = "$, row, $2z"   "$, result))   # Ok #
+            OD;
+            print(newline)
+        OD;
+        IF group < 2 THEN print(newline) FI
+    OD
+END
