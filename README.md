@@ -15,6 +15,11 @@ Being Great Gatsby with legacy language programming
   - [Multiplication Table (2024.10.18)](/ALGOL//README.md#multiplication-table-20241018)
 
 
+## [APL](/APL/)
+
+  - [APL / J : Calculate The Average (2024.10.25)](/APL/README.md#apl--j--calculate-the-average-20241025)
+
+
 ## [BASIC](/BASIC/)
 
   - [Lotto 6/45 Number Generator (2024.08.28)](/BASIC/README.md#lotto-645-number-generator-20240828)
