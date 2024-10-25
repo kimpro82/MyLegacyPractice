@@ -20,10 +20,10 @@ Includes languages derived from APL
 
 ### \<List>
 
-- [APL, J : Calculate The Average (2024.10.24)](#apl--j--calculate-the-average-20241024)
+- [APL, J : Calculate The Average (2024.10.24)](#apl-j--calculate-the-average-20241024)
 
 
-## [APL / J : Calculate The Average (2024.10.24)](#list)
+## [APL, J : Calculate The Average (2024.10.24)](#list)
 
 - My initial trial to code in APL and J (with [Perplexity](https://www.perplexity.ai/))
 - Run with [APL 1.8](https://www.jdoodle.com/compile-apl-online) and [J 9.01.10](https://www.jdoodle.com/execute-jlanguage-online) in [JDoodle](https://www.jdoodle.com/)
