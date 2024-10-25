@@ -39,7 +39,7 @@ Includes languages derived from APL
     > 3
   </details>
   <details open="">
-    <summary>J : CalcAvg.j</summary>
+    <summary>J : CalcAvg.ijs</summary>
 
     ```apl
     avg =: +/ % #           NB. Define a function to calculate the average
