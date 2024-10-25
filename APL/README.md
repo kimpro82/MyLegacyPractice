@@ -20,7 +20,7 @@ Includes languages derived from APL
 
 ### \<List>
 
-- [APL / J : Calculate The Average (2024.10.24)](#apl--j--calculate-the-average-20241024)
+- [APL, J : Calculate The Average (2024.10.24)](#apl--j--calculate-the-average-20241024)
 
 
 ## [APL / J : Calculate The Average (2024.10.24)](#list)

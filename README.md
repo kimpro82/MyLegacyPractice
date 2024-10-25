@@ -17,7 +17,7 @@ Being Great Gatsby with legacy language programming
 
 ## [APL](/APL/)
 
-  - [APL / J : Calculate The Average (2024.10.24)](/APL/README.md#apl--j--calculate-the-average-20241024)
+  - [APL, J : Calculate The Average (2024.10.24)](/apl/README.md#apl--j--calculate-the-average-20241024)
 
 
 ## [BASIC](/BASIC/)
