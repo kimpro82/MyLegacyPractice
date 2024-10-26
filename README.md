@@ -35,6 +35,7 @@ Being Great Gatsby with legacy language programming
 
 ## [COBOL](/COBOL/)
 
+  - [Multiplication Table (2024.10.25)](/COBOL/README.md#multiplication-table-20241025)
   - [Hello World (2023.09.04)](/COBOL/README.md#hello-world-20230904)
 
 
