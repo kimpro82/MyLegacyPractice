@@ -38,8 +38,8 @@
 590 LINE (X3, Y3)-(X1, Y1), 2       ' Draw triangle left side
 
 600 REM ---- Draw Circle ----
-610 CIRX = CX + 100                 ' Circle center X coordinate
-620 CIRCLE (CIRX, CY), CY / 2, 3
+610 CIRX = CX + 100                             ' Circle center X coordinate
+620 CIRCLE (CIRX, CY), SHAPEHT / 2 * 1.15, 3    ' 1.15 : Magic Number!
 
 700 REM ---- Wait for Key Press ----
 710 LOCATE 24, 1 : PRINT "Press any key...";
