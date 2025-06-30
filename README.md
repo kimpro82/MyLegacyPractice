@@ -22,14 +22,20 @@ Being Great Gatsby with legacy language programming
 
 ## [BASIC](/BASIC/)
 
+#### GW-BASIC
+  - [Draw a Square, Triangle, and Circle (2025.06.30)](#draw-a-square-triangle-and-circle-20250630)
   - [Lotto 6/45 Number Generator (2024.08.28)](/BASIC/README.md#lotto-645-number-generator-20240828)
   - [Simultaneous Equations Solver (2024.08.20)](/BASIC/README.md#simultaneous-equations-solver-20240820)
   - [Decimal/Hexadecimal Convertor (2023.12.10)](/BASIC/README.md#decimalhexadecimal-convertor-20231210)
   - [Line Numbering 2 (2023.07.22)](/BASIC/README.md#line-numbering-2-20230722)
+
+#### QuickBASIC / QBasic
   - [Line Numbering (2023.07.19)](/BASIC/README.md#line-numbering-20230719)
   - [Draw A Car (2022.02.09)](/BASIC/README.md#draw-a-car-20220209)
   - [Play Music (2021.02.20)](/BASIC/README.md#play-music-20210220)
   - [Hello World (2020.02.27)](/BASIC/README.md#hello-world-20200227)
+
+#### ETC
   - [References (2020.02.25)](/BASIC/README.md#references-20200225)
 
 
