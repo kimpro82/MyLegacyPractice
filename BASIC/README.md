@@ -5,15 +5,86 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 
 ### \<List>
 
+#### GW-BASIC
+- [Draw a Square, Triangle, and Circle (2025.06.30)](#draw-a-square-triangle-and-circle-20250630)
 - [Lotto 6/45 Number Generator (2024.08.28)](#lotto-645-number-generator-20240828)
 - [Simultaneous Equations Solver (2024.08.20)](#simultaneous-equations-solver-20240820)
 - [Decimal/Hexadecimal Convertor (2023.12.10)](#decimalhexadecimal-convertor-20231210)
 - [Line Numbering 2 (2023.07.22)](#line-numbering-2-20230722)
+
+#### QuickBASIC / QBasic
 - [Line Numbering (2023.07.19)](#line-numbering-20230719)
 - [Draw A Car (2022.02.09)](#draw-a-car-20220209)
 - [Play Music (2021.02.20)](#play-music-20210220)
 - [Hello World (2020.02.27)](#hello-world-20200227)
+
+#### ETC
 - [References (2020.02.25)](#references-20200225)
+
+
+## [Draw a Square, Triangle, and Circle (2025.06.30)](#list)
+
+- My eternal nostalgia!
+
+  ![Shapes](./Images/GW-BASIC_SHAPES.PNG)
+
+- Code
+  <details>
+    <summary>SHAPES.BAS</summary>
+
+  ```bas
+  100 REM ===================================================
+  110 REM Draw a Square, Equilateral Triangle, and Circle
+  120 REM 2025.06.30.
+
+  130 REM [Description]
+  140 REM - SHAPEHT: Common height for all shapes (in pixels)
+  150 REM - CX, CY: Screen center coordinates
+  160 REM - Triangle base length is calculated automatically
+  170 REM - Circle radius = SHAPEHT / 2
+  180 REM ===================================================
+
+  200 REM ---- Initialize Constants ----
+  210 ON ERROR GOTO 700
+  220 SCREEN 1                        ' 320x200 graphics mode
+  230 SHAPEHT = 80                    ' Common height of all shapes
+  240 CX = 160 : CY = 100             ' Screen center
+
+  300 REM ---- Draw Title ----
+  310 LOCATE 2, 17 : PRINT "My Shapes"
+  320 LOCATE 4, 16 : PRINT "2025.06.30."
+
+  400 REM ---- Draw Square ----
+  410 SQSIZE = SHAPEHT
+  420 SQX = CX - 100 - SQSIZE / 2     ' Square left-top X coordinate
+  430 LINE (SQX, CY - SQSIZE / 2)-(SQX + SQSIZE, CY + SQSIZE / 2), 1, B
+
+  500 REM ---- Draw Equilateral Triangle ----
+  510 TRIX = CX                       ' Triangle center X coordinate
+  520 TRIBASE = SHAPEHT * 2 / SQR(3)  ' Triangle base length
+
+  530 REM Calculate Triangle Vertices
+  540 X1 = TRIX - TRIBASE / 2 : Y1 = CY + SHAPEHT / 2
+  550 X2 = TRIX + TRIBASE / 2 : Y2 = Y1
+  560 X3 = TRIX : Y3 = CY - SHAPEHT / 2
+
+  570 LINE (X1, Y1)-(X2, Y2), 2       ' Draw triangle base
+  580 LINE (X2, Y2)-(X3, Y3), 2       ' Draw triangle right side
+  590 LINE (X3, Y3)-(X1, Y1), 2       ' Draw triangle left side
+
+  600 REM ---- Draw Circle ----
+  610 CIRX = CX + 100                             ' Circle center X coordinate
+  620 CIRCLE (CIRX, CY), SHAPEHT / 2 * 1.15, 3    ' 1.15 : Magic Number!
+
+  700 REM ---- Wait for Key Press ----
+  710 LOCATE 24, 1 : PRINT "Press any key...";
+  720 IF INKEY$ = "" THEN GOTO 720
+  730 SCREEN 0
+  740 WIDTH 80
+
+  800 END
+  ```
+  </details>
 
 
 ## [Lotto 6/45 Number Generator (2024.08.28)](#list)
