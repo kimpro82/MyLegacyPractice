@@ -15,7 +15,7 @@ DECLARE SUB CheckCollisions ()
 DECLARE SUB DrawCenterLine ()
 
 ' --- UI Alignment Constants ---
-CONST TITLE.X = 28
+CONST TITLE.X = 2
 CONST INFO.X = 18
 CONST TITLE.Y = 3
 
@@ -129,12 +129,12 @@ END
 
 SUB OpeningScreen ()
     COLOR 15: CLS
-    LOCATE TITLE.Y + 0, TITLE.X: PRINT " ____   ___   _   _  ____ "
-    LOCATE TITLE.Y + 1, TITLE.X: PRINT "|  _ \ / _ \ | \ | |/ ___|"
-    LOCATE TITLE.Y + 2, TITLE.X: PRINT "| |_) | | | ||  \| | |  _ "
-    LOCATE TITLE.Y + 3, TITLE.X: PRINT "|  __/| |_| || |\  | |_| |"
-    LOCATE TITLE.Y + 4, TITLE.X: PRINT "|_|    \___/ |_| \_|\____|"
-    
+    LOCATE TITLE.Y + 0, TITLE.X: PRINT " ____   ___  _   _  ____   _____ _   _ _____    ___  ____ ___ ____ ___ _   _ "
+    LOCATE TITLE.Y + 1, TITLE.X: PRINT "|  _ \ / _ \| \ | |/ ___| |_   _| | | | ____|  / _ \|  _ \_ _/ ___|_ _| \ | |"
+    LOCATE TITLE.Y + 2, TITLE.X: PRINT "| |_) | | | |  \| | |  _    | | | |_| |  _|   | | | | |_) | | |  _ | ||  \| |"
+    LOCATE TITLE.Y + 3, TITLE.X: PRINT "|  __/| |_| | |\  | |_| |   | | |  _  | |___  | |_| |  _ <| | |_| || || |\  |"
+    LOCATE TITLE.Y + 4, TITLE.X: PRINT "|_|    \___/|_| \_|\____|   |_| |_| |_|_____|  \___/|_| \_\__\____|___|_| \_|"
+
     COLOR 7
     LOCATE TITLE.Y + 7, INFO.X: PRINT "Reimplementation of Atari's 1972 Pong"
     LOCATE TITLE.Y + 8, INFO.X: PRINT "Written in QuickBASIC with Google Gemini 3 Flash"
