@@ -92,31 +92,35 @@ DO
         COLOR 15: CLS
         LOCATE 13, 36: PRINT "GAME OVER"
         IF score1 >= WINNING.SCORE THEN
-            LOCATE 15, 33: PRINT "PLAYER 1 WINS!"
+            LOCATE 15, 34: PRINT "PLAYER 1 WINS!"
         ELSE
-            LOCATE 15, 33: PRINT "PLAYER 2 WINS!"
+            LOCATE 15, 34: PRINT "PLAYER 2 WINS!"
         END IF
-        LOCATE 18, 30: PRINT "Press Any Key to Exit."
+        
+        ' Victory Jingle
+        SOUND 523, 1: SOUND 659, 1: SOUND 783, 1: SOUND 1046, 3
+        
+        WHILE INKEY$ <> "": WEND
+        endTime# = TIMER + 1.5
+        DO: LOOP UNTIL TIMER > endTime#
+        
+        LOCATE 18, 28: PRINT "Press Any Key to Exit Game.    "
         DO: LOOP UNTIL INKEY$ <> ""
         EXIT DO
     END IF
 
-    ' --- Rendering (Erase & Restore) ---
+    ' --- Rendering ---
     LINE (oldBallX, oldBallY)-(oldBallX + ballSize, oldBallY + ballSize), 0, BF
-    
-    ' Restore persistent UI elements if erased by ball movement
     IF oldBallX > 310 AND oldBallX < 330 THEN DrawCenterLine
     IF oldBallY < 35 THEN LOCATE 2, 37: PRINT score1; " : "; score2
 
     IF p1Y <> oldP1Y THEN LINE (20, oldP1Y)-(20 + PADDLE.WIDTH, oldP1Y + PADDLE.HEIGHT), 0, BF
     IF p2Y <> oldP2Y THEN LINE (610, oldP2Y)-(610 + PADDLE.WIDTH, oldP2Y + PADDLE.HEIGHT), 0, BF
 
-    ' Draw Current Frame
     LINE (ballX, ballY)-(ballX + ballSize, ballY + ballSize), 15, BF
     DrawPaddle 20, p1Y, 15
     DrawPaddle 610, p2Y, 15
 
-    ' Frame rate control
     FOR delay = 1 TO 2000: NEXT delay 
 LOOP UNTIL kbd$ = CHR$(27)
 END
@@ -178,23 +182,24 @@ END SUB
 
 SUB UpdateBall ()
     ballX = ballX + ballDX: ballY = ballY + ballDY
-    
     IF ballY <= 0 OR ballY >= SCREEN.HEIGHT - 8 THEN
         ballDY = -ballDY: SOUND 800, 0.1
     END IF
     
     IF ballX < 0 OR ballX > SCREEN.WIDTH THEN
+        ' Score Sound: Lower pitch to indicate point scored
+        SOUND 440, 0.5: SOUND 330, 0.8
+
+        LINE (ballX - ballDX, ballY - ballDY)-(ballX - ballDX + ballSize, ballY - ballDY + ballSize), 0, BF
+        
         DIM scorer AS INTEGER
         IF ballX < 0 THEN scorer = 2: score2 = score2 + 1 ELSE scorer = 1: score1 = score1 + 1
-        
-        LINE (ballX, ballY)-(ballX + 8, ballY + 8), 0, BF
         LOCATE 2, 37: PRINT score1; " : "; score2
         
         IF score1 < WINNING.SCORE AND score2 < WINNING.SCORE THEN
-            ' Reset position
+            oldP1Y = p1Y: oldP2Y = p2Y
             ballX = 320: ballY = 240
             
-            ' --- RESET SPEED TO INITIAL VALUES ---
             DIM bDX, bDY AS SINGLE
             SELECT CASE difficulty
                 CASE 1: bDX = 5: bDY = 3
@@ -202,18 +207,22 @@ SUB UpdateBall ()
                 CASE 3: bDX = 9: bDY = 7
             END SELECT
             
-            ' Apply reset speeds (acceleration removed)
             IF scorer = 2 THEN ballDX = -bDX ELSE ballDX = bDX
             ballDY = (bDY * 0.7) + (RND * (bDY * 0.6))
             IF RND > 0.5 THEN ballDY = -ballDY
 
-            ' Serve Delay loop
             startTime# = TIMER
             DO
+                DIM serveOldP1Y, serveOldP2Y AS SINGLE
+                serveOldP1Y = p1Y: serveOldP2Y = p2Y
                 k$ = INKEY$
                 IF k$ = "w" OR k$ = "W" THEN p1Y = p1Y - PADDLE.SPEED
                 IF k$ = "s" OR k$ = "S" THEN p1Y = p1Y + PADDLE.SPEED
-                IF p2IsAI = 0 THEN
+                IF p2IsAI = 1 THEN
+                   ' Keep AI active during delay but slower
+                   IF ballY > p2Y + (PADDLE.HEIGHT / 2) THEN p2Y = p2Y + 1
+                   IF ballY < p2Y + (PADDLE.HEIGHT / 2) THEN p2Y = p2Y - 1
+                ELSE
                     IF k$ = CHR$(0) + "H" THEN p2Y = p2Y - PADDLE.SPEED
                     IF k$ = CHR$(0) + "P" THEN p2Y = p2Y + PADDLE.SPEED
                 END IF
@@ -223,22 +232,26 @@ SUB UpdateBall ()
                 IF p2Y < 0 THEN p2Y = 0
                 IF p2Y > SCREEN.HEIGHT - PADDLE.HEIGHT THEN p2Y = SCREEN.HEIGHT - PADDLE.HEIGHT
 
+                IF p1Y <> serveOldP1Y THEN LINE (20, serveOldP1Y)-(20 + PADDLE.WIDTH, serveOldP1Y + PADDLE.HEIGHT), 0, BF
+                IF p2Y <> serveOldP2Y THEN LINE (610, serveOldP2Y)-(610 + PADDLE.WIDTH, serveOldP2Y + PADDLE.HEIGHT), 0, BF
+
                 DrawPaddle 20, p1Y, 15: DrawPaddle 610, p2Y, 15
-                LINE (320, 240)-(320 + 8, 240 + 8), 15, BF
+                LINE (320, 240)-(320 + ballSize, 240 + ballSize), 15, BF
                 DrawCenterLine: LOCATE 2, 37: PRINT score1; " : "; score2
+                FOR d = 1 TO 500: NEXT d
             LOOP UNTIL TIMER > startTime# + 1.0
+            oldP1Y = p1Y: oldP2Y = p2Y
             DrawCenterLine
         END IF
     END IF
 END SUB
 
 SUB CheckCollisions ()
-    ' --- Left Paddle Collision (P1) ---
+    ' Left Paddle (P1)
     IF ballX <= 30 AND ballX >= 20 THEN
-        IF ballY + 8 >= p1Y AND ballY <= p1Y + 60 THEN
+        IF ballY + ballSize >= p1Y AND ballY <= p1Y + PADDLE.HEIGHT THEN
             ballDX = ABS(ballDX) + ACCEL.RATE
-            DIM hitPos1 AS SINGLE
-            hitPos1 = (ballY + 4) - (p1Y + 30)
+            hitPos1 = (ballY + (ballSize / 2)) - (p1Y + (PADDLE.HEIGHT / 2))
             ballDY = ballDY + (hitPos1 * ANGLE.SENSITIVITY)
             IF ballDY > 12 THEN ballDY = 12
             IF ballDY < -12 THEN ballDY = -12
@@ -246,12 +259,11 @@ SUB CheckCollisions ()
         END IF
     END IF
 
-    ' --- Right Paddle Collision (P2) ---
-    IF ballX + 8 >= 610 AND ballX <= 620 THEN
-        IF ballY + 8 >= p2Y AND ballY <= p2Y + 60 THEN
+    ' Right Paddle (P2)
+    IF ballX + ballSize >= 610 AND ballX <= 620 THEN
+        IF ballY + ballSize >= p2Y AND ballY <= p2Y + PADDLE.HEIGHT THEN
             ballDX = -(ABS(ballDX) + ACCEL.RATE)
-            DIM hitPos2 AS SINGLE
-            hitPos2 = (ballY + 4) - (p2Y + 30)
+            hitPos2 = (ballY + (ballSize / 2)) - (p2Y + (PADDLE.HEIGHT / 2))
             ballDY = ballDY + (hitPos2 * ANGLE.SENSITIVITY)
             IF ballDY > 12 THEN ballDY = 12
             IF ballDY < -12 THEN ballDY = -12
