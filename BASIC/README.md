@@ -28,7 +28,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 
   ![QuickBASIC PONG Play](./Images/QuickBASIC_PONG_Play.gif)
 
-### 🛠️ System Requirements
+### ⚙️ System Requirements
   * **Environment**: QuickBASIC 4.5 or other compatible environments(e.g., QB64)
   * **Screen Mode**: VGA Screen Mode 12 (640x480, 16 Colors)
 
