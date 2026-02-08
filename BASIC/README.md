@@ -26,6 +26,8 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 
 ## [Pong The Origin: 1972 Atari Style Reimplementation (2026.02.07)](#list)
 
+  ![QuickBASIC PONG Play](./Images/QuickBASIC_PONG_Play.gif)
+
 ### 🛠️ System Requirements
   * **Environment**: QuickBASIC 4.5 or other compatible environments(e.g., QB64)
   * **Screen Mode**: VGA Screen Mode 12 (640x480, 16 Colors)
