@@ -1,4 +1,4 @@
-# [My Basic Practice](../README.md#basic)
+# [My BASIC Practice](../README.md#basic)
 
 My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASIC* and so on) before [*Visual Basic*](https://github.com/kimpro82/MyPractice/blob/master/VBA)
 
@@ -13,6 +13,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 - [Line Numbering 2 (2023.07.22)](#line-numbering-2-20230722)
 
 #### QuickBASIC / QBasic
+- [Pong The Origin: 1972 Atari Style Reimplementation (2026.02.07)](#pong-the-origin-1972-atari-style-reimplementation-20260207)
 - [Line Numbering (2023.07.19)](#line-numbering-20230719)
 - [Draw A Car (2022.02.09)](#draw-a-car-20220209)
 - [Play Music (2021.02.20)](#play-music-20210220)
@@ -20,6 +21,34 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 
 #### ETC
 - [References (2020.02.25)](#references-20200225)
+
+
+
+## [Pong The Origin: 1972 Atari Style Reimplementation (2026.02.07)](#list)
+
+  ![QuickBASIC PONG Play](./Images/QuickBASIC_PONG_Play.gif)
+
+### ⚙️ System Requirements
+  * **Environment**: QuickBASIC 4.5 or other compatible environments(e.g., QB64)
+  * **Screen Mode**: VGA Screen Mode 12 (640x480, 16 Colors)
+
+### ✨ Key Features
+  * **1P/2P Modes**: Play against a dynamic AI or a local friend.
+  * **Difficulty Scaling**: Choose among 3 difficulty tiers (Easy, Normal, Hard) affecting AI reaction and paddle speed.
+  * **Kinetic Ball Physics**: 
+    * **Acceleration**: Velocity increases on every successful hit, demanding higher focus over time.
+    * **Segment Hits**: Trajectory angles are calculated based on the hit position (top/center/bottom) of the paddle.
+  * **Optimization**:
+    * **Flicker-Free**: Implements selective erasing (`LINE...0, BF`) for smooth motion instead of full-screen clears.
+    * **Input Sync**: Non-blocking `INKEY$` handling for responsive 2-player controls.
+  * **Soundscape**: Legacy-style `SOUND` frequencies for wall bounces, paddle collisions, and match victory jingles.
+
+### 🎮 Controls
+  | Action | Player 1 (Left) | Player 2 (Right) |
+  | :-: | :-: | :-: |
+  | **Move Up** | `W` | `Up Arrow` |
+  | **Move Down** | `S` | `Down Arrow` |
+  | **Exit** | `Esc` | - |
 
 
 ## [Draw a Square, Triangle, and Circle (2025.06.30)](#list)
