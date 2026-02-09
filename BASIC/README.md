@@ -1,6 +1,6 @@
 # [My BASIC Practice](../README.md#basic)
 
-My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASIC* and so on) before [*Visual Basic*](https://github.com/kimpro82/MyPractice/blob/master/VBA)
+My Nostalgia: Code from the **Legacy BASIC** Family (*GW-BASIC*, *QuickBASIC*, etc.) before [*Visual Basic*](https://github.com/kimpro82/MyPractice/blob/master/VBA)
 
 
 ### \<List>
@@ -26,7 +26,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 
 ## [Pong The Origin: 1972 Atari Style Reimplementation (2026.02.07)](#list)
 
-  ![QuickBASIC PONG Play](./Images/QuickBASIC_PONG_Play.gif)
+  ![QuickBASIC PONG Play](./QuickBASIC/Images/QuickBASIC_PONG_Play.gif)
 
 ### ⚙️ System Requirements
   * **Environment**: QuickBASIC 4.5 or other compatible environments(e.g., QB64)
@@ -55,7 +55,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 
 - My eternal nostalgia!
 
-  ![Shapes](./Images/GW-BASIC_SHAPES.PNG)
+  ![Shapes](./GW-BASIC/Images/GW-BASIC_SHAPES.PNG)
 
 - Code
   <details>
@@ -123,7 +123,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   - Displays the numbers in the format: a b c d e f + lucky number
 - Migrated from https://github.com/kimpro82/MyBizApps/pull/61
 
-  ![Lotto 6/25 by GW-BASIC](./Images/LOTTO.png)
+  ![Lotto 6/25 by GW-BASIC](./GW-BASIC/Images/LOTTO.png)
 
 - Code : `LOTTO.BAS`
   <details>
@@ -245,7 +245,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   - Enter six floating-point numbers: `a`, `b`, `c`, `d`, `e`, and `f`
   - If fewer than six numbers are provided, zeros will be substituted for the missing values
 
-  ![Simultaneous Equations Solver](./Images/SESOLVER.PNG)
+  ![Simultaneous Equations Solver](./GW-BASIC/Images/SESOLVER.PNG)
 
 - Code : `SESOLVER.BAS`
   <details>
@@ -343,7 +343,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   - Reference : [8비트 컴퓨터에서 게임 만들기 (YouTube)](https://youtu.be/Z8yeXVqiKg8)
 - Be aware of *BOM*(Byte-Order Mark; `EF BB BF`) signature generation when creating a code file with an external editor
 
-  ![Decimal/Hexadecimal Convertor](./Images/GW-BASIC_HEXCONV_RUN.PNG)
+  ![Decimal/Hexadecimal Convertor](./GW-BASIC/Images/GW-BASIC_HEXCONV_RUN.PNG)
 
   <details>
     <summary>Code : HEXCONV.BAS</summary>
@@ -495,7 +495,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
 
 - Remember how I felt when I was a primary school student
 
-  ![Draw A Car](Images/QB_DrawingCar.PNG)
+  ![Draw A Car](./QuickBASIC/Images/QB_DrawingCar.PNG)
 
   <details>
     <summary>Code : DrawCar.bas</summary>
@@ -586,7 +586,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   ```
   </details>
 
-  - **Results** : [BEEP](./Sounds/QB_SOUND_BEEP.wav) [SOUND](./Sounds/QB_SOUND_SOUND.wav) [PLAY](./Sounds/QB_SOUND_PLAY.wav)  
+  - **Results** : [BEEP](./QuickBASIC/Sounds/QB_SOUND_BEEP.wav) [SOUND](./QuickBASIC/Sounds/QB_SOUND_SOUND.wav) [PLAY](./QuickBASIC/Sounds/QB_SOUND_PLAY.wav)  
   (* These can't be played directly, but played after downloading.)
 
   <details open="">
@@ -608,7 +608,7 @@ My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASI
   ```
   </details>
 
-  - **Results** : [C major](./Sounds/QB_PLAY_C%20major.wav) [C minor](./Sounds/QB_PLAY_C%20minor.wav)  
+  - **Results** : [C major](./QuickBASIC/Sounds/QB_PLAY_C%20major.wav) [C minor](./QuickBASIC/Sounds/QB_PLAY_C%20minor.wav)  
   (* These can't be played directly, but played after downloading.)
 
 

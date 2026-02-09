@@ -1,2 +1,3 @@
 /ALGOL/*.a* linguist-language=ALGOL
-/BASIC/*.bas linguist-language=BASIC
+/BASIC/GW-BASIC/*.bas linguist-language=BASIC
+/BASIC/QuickBASIC/*.bas linguist-language=QuickBASIC
