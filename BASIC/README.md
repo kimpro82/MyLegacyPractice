@@ -1,6 +1,6 @@
 # [My BASIC Practice](../README.md#basic)
 
-My Nostalgia; codes for **the old BASIC product family** (*GW-BASIC*, *QuickBASIC* and so on) before [*Visual Basic*](https://github.com/kimpro82/MyPractice/blob/master/VBA)
+My Nostalgia: Code from the **Legacy BASIC** Family (*GW-BASIC*, *QuickBASIC*, etc.) before [*Visual Basic*](https://github.com/kimpro82/MyPractice/blob/master/VBA)
 
 
 ### \<List>
