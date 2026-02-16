@@ -29,8 +29,9 @@ My Nostalgia: Code from the **Legacy BASIC** Family (*GW-BASIC*, *QuickBASIC*, e
   ![QuickBASIC PONG Play v1.1](./QuickBASIC/Images/QuickBASIC_PONG_Play_1.1.gif)
 
 ### 🔄 Improvements from [v1.0 (2026.02.07)](#pong-the-origin-1972-atari-style-reimplementation-v10-20260207)
-  * **Eliminate Paddle Flickering**: Implemented directional-selective erasing for paddles—only the regions affected by movement are cleared.
+  * **Enhanced Initial Serve Logic**: Overhauled the fixed-direction serve mechanism (1P → 2P) with no waiting time; implemented a 1.5-second pre-game countdown followed by a randomized serve direction and angle.
   * **Enlarge Score Display**: Introduced bitmap font-based multi-row graphics rendering with a custom 5-row character array, scaling scores closer to the original 1972 Atari aesthetic and improving visibility.
+  * **Eliminate Paddle Flickering**: Implemented directional-selective erasing for paddles—only the regions affected by movement are cleared.
   * **Fine-Tuned Wall Collision Angles**: Refined ball trajectory calculations at wall boundaries with anti-sticking bounce logic, including force-back positioning to prevent edge-case adhesion.
 
 
