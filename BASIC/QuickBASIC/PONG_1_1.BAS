@@ -115,6 +115,7 @@ DO
     IF oldBallX > 310 AND oldBallX < 330 THEN DrawCenterLine
     IF oldBallY < 35 THEN LOCATE 2, 37: PRINT score1; " : "; score2
 
+    ' Partial Redraw Logic for Paddles
     IF p1Y > oldP1Y THEN ' DOWN
         LINE (20, oldP1Y)-(20 + PADDLE.WIDTH, p1Y), 0, BF
     END IF
@@ -151,7 +152,7 @@ SUB OpeningScreen ()
     LOCATE TITLE.Y + 7, INFO.X: PRINT "Reimplementation of Atari's 1972 Pong"
     LOCATE TITLE.Y + 8, INFO.X: PRINT "Written in QuickBASIC with Google Gemini 3 Flash"
     LOCATE TITLE.Y + 10, INFO.X: PRINT "Developer : kimpro82"
-    LOCATE TITLE.Y + 11, INFO.X: PRINT "Date      : 2026.02.07"
+    LOCATE TITLE.Y + 11, INFO.X: PRINT "Date      : 2026.02.16"
 
     COLOR 15: LOCATE TITLE.Y + 13, INFO.X: PRINT "FIRST TO 11 POINTS WINS THE MATCH!"
 
@@ -198,20 +199,25 @@ SUB UpdateBall ()
         ballDY = -ballDY: SOUND 800, 0.1
     END IF
     
+    ' Goal Scoring Detection
     IF ballX < 0 OR ballX > SCREEN.WIDTH THEN
-        ' Score Sound: Lower pitch to indicate point scored
+        ' Score Sound (Blocking)
         SOUND 440, 0.5: SOUND 330, 0.8
 
-        LINE (ballX - ballDX, ballY - ballDY)-(ballX - ballDX + ballSize, ballY - ballDY + ballSize), 0, BF
+        ' Scoring Logic
+        IF ballX < 0 THEN score2 = score2 + 1 ELSE score1 = score1 + 1
         
-        DIM scorer AS INTEGER
-        IF ballX < 0 THEN scorer = 2: score2 = score2 + 1 ELSE scorer = 1: score1 = score1 + 1
-        LOCATE 2, 37: PRINT score1; " : "; score2
-        
+        ' Handle New Serve if no one won yet
         IF score1 < WINNING.SCORE AND score2 < WINNING.SCORE THEN
-            oldP1Y = p1Y: oldP2Y = p2Y
+            ' *** FIXED: Perform CLS only ONCE after the sound ends ***
+            CLS
+            LOCATE 2, 37: PRINT score1; " : "; score2
+            DrawCenterLine
+            
+            ' Reset ball position to center
             ballX = 320: ballY = 240
             
+            ' Reset ball velocity based on difficulty
             DIM bDX, bDY AS SINGLE
             SELECT CASE difficulty
                 CASE 1: bDX = 5: bDY = 3
@@ -219,41 +225,53 @@ SUB UpdateBall ()
                 CASE 3: bDX = 9: bDY = 7
             END SELECT
             
-            IF scorer = 2 THEN ballDX = -bDX ELSE ballDX = bDX
+            IF ballX < 0 THEN ballDX = bDX ELSE ballDX = -bDX
             ballDY = (bDY * 0.7) + (RND * (bDY * 0.6))
             IF RND > 0.5 THEN ballDY = -ballDY
 
+            ' Initialize local "old" coordinates for the serving delay loop
+            DIM sOldP1Y, sOldP2Y AS SINGLE
+            sOldP1Y = p1Y: sOldP2Y = p2Y
+
+            ' Delay before next serve while allowing paddle movement (Flicker-free)
             startTime# = TIMER
             DO
-                DIM serveOldP1Y, serveOldP2Y AS SINGLE
-                serveOldP1Y = p1Y: serveOldP2Y = p2Y
+                sOldP1Y = p1Y: sOldP2Y = p2Y
                 k$ = INKEY$
                 IF k$ = "w" OR k$ = "W" THEN p1Y = p1Y - PADDLE.SPEED
                 IF k$ = "s" OR k$ = "S" THEN p1Y = p1Y + PADDLE.SPEED
+                
                 IF p2IsAI = 1 THEN
-                   ' Keep AI active during delay but slower
-                   IF ballY > p2Y + (PADDLE.HEIGHT / 2) THEN p2Y = p2Y + 1
-                   IF ballY < p2Y + (PADDLE.HEIGHT / 2) THEN p2Y = p2Y - 1
+                    IF ballY > p2Y + (PADDLE.HEIGHT / 2) THEN p2Y = p2Y + 1
+                    IF ballY < p2Y + (PADDLE.HEIGHT / 2) THEN p2Y = p2Y - 1
                 ELSE
                     IF k$ = CHR$(0) + "H" THEN p2Y = p2Y - PADDLE.SPEED
                     IF k$ = CHR$(0) + "P" THEN p2Y = p2Y + PADDLE.SPEED
                 END IF
-                
+
+                ' Clamp positions
                 IF p1Y < 0 THEN p1Y = 0
                 IF p1Y > SCREEN.HEIGHT - PADDLE.HEIGHT THEN p1Y = SCREEN.HEIGHT - PADDLE.HEIGHT
                 IF p2Y < 0 THEN p2Y = 0
                 IF p2Y > SCREEN.HEIGHT - PADDLE.HEIGHT THEN p2Y = SCREEN.HEIGHT - PADDLE.HEIGHT
 
-                IF p1Y <> serveOldP1Y THEN LINE (20, serveOldP1Y)-(20 + PADDLE.WIDTH, serveOldP1Y + PADDLE.HEIGHT), 0, BF
-                IF p2Y <> serveOldP2Y THEN LINE (610, serveOldP2Y)-(610 + PADDLE.WIDTH, serveOldP2Y + PADDLE.HEIGHT), 0, BF
+                ' Partial redraw within serve loop to avoid full screen CLS flickering
+                IF p1Y > sOldP1Y THEN LINE (20, sOldP1Y)-(20 + PADDLE.WIDTH, p1Y), 0, BF
+                IF p1Y < sOldP1Y THEN LINE (20, p1Y + PADDLE.HEIGHT)-(20 + PADDLE.WIDTH, sOldP1Y + PADDLE.HEIGHT), 0, BF
+                IF p2Y > sOldP2Y THEN LINE (610, sOldP2Y)-(610 + PADDLE.WIDTH, p2Y), 0, BF
+                IF p2Y < sOldP2Y THEN LINE (610, p2Y + PADDLE.HEIGHT)-(610 + PADDLE.WIDTH, sOldP2Y + PADDLE.HEIGHT), 0, BF
 
-                DrawPaddle 20, p1Y, 15: DrawPaddle 610, p2Y, 15
-                LINE (320, 240)-(320 + ballSize, 240 + ballSize), 15, BF
-                DrawCenterLine: LOCATE 2, 37: PRINT score1; " : "; score2
+                ' Refresh visuals
+                DrawPaddle 20, p1Y, 15
+                DrawPaddle 610, p2Y, 15
+                LINE (ballX, ballY)-(ballX + ballSize, ballY + ballSize), 15, BF
+                
                 FOR d = 1 TO 500: NEXT d
-            LOOP UNTIL TIMER > startTime# + 1.0
+            LOOP UNTIL TIMER > startTime# + 1.2
+            
+            ' Final sync for main loop's differential rendering
             oldP1Y = p1Y: oldP2Y = p2Y
-            DrawCenterLine
+            oldBallX = ballX: oldBallY = ballY
         END IF
     END IF
 END SUB
