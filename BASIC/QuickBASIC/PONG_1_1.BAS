@@ -238,7 +238,7 @@ SUB DrawCenterLine ()
 END SUB
 
 SUB DrawScore (scoreVal1 AS INTEGER, scoreVal2 AS INTEGER)
-    ' Internal font data
+    ' Internal font data (Bitmap character representations)
     DIM f$(11, 4)
     f$(0, 0) = " ### ": f$(0, 1) = "#   #": f$(0, 2) = "#   #": f$(0, 3) = "#   #": f$(0, 4) = " ### "
     f$(1, 0) = "  #  ": f$(1, 1) = " ##  ": f$(1, 2) = "  #  ": f$(1, 3) = "  #  ": f$(1, 4) = " ### "
@@ -254,13 +254,12 @@ SUB DrawScore (scoreVal1 AS INTEGER, scoreVal2 AS INTEGER)
     f$(11, 0) = "#  # ": f$(11, 1) = "#  # ": f$(11, 2) = "#  # ": f$(11, 3) = "#  # ": f$(11, 4) = "#  # "
 
     COLOR 15
-    ' Draw Player 1 Score (Left)
+    ' Draw Scores with equidistant alignment from the center line (Col 40)
     FOR row = 0 TO 4
+        ' P1 Score: Centered around Col 30
         LOCATE 2 + row, 30: PRINT f$(scoreVal1, row)
-    NEXT row
-    ' Draw Player 2 Score (Right)
-    FOR row = 0 TO 4
-        LOCATE 2 + row, 45: PRINT f$(scoreVal2, row)
+        ' P2 Score: Centered around Col 47
+        LOCATE 2 + row, 47: PRINT f$(scoreVal2, row)
     NEXT row
 END SUB
 
