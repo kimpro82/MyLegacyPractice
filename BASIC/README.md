@@ -13,7 +13,8 @@ My Nostalgia: Code from the **Legacy BASIC** Family (*GW-BASIC*, *QuickBASIC*, e
 - [Line Numbering 2 (2023.07.22)](#line-numbering-2-20230722)
 
 #### QuickBASIC / QBasic
-- [Pong The Origin: 1972 Atari Style Reimplementation (2026.02.07)](#pong-the-origin-1972-atari-style-reimplementation-20260207)
+- [Pong The Origin: 1972 Atari Style Reimplementation v1.1 (2026.02.16)](#pong-the-origin-1972-atari-style-reimplementation-v11-20260216)
+- [Pong The Origin: 1972 Atari Style Reimplementation v1.0 (2026.02.07)](#pong-the-origin-1972-atari-style-reimplementation-v10-20260207)
 - [Line Numbering (2023.07.19)](#line-numbering-20230719)
 - [Draw A Car (2022.02.09)](#draw-a-car-20220209)
 - [Play Music (2021.02.20)](#play-music-20210220)
@@ -27,9 +28,13 @@ My Nostalgia: Code from the **Legacy BASIC** Family (*GW-BASIC*, *QuickBASIC*, e
 
   ![QuickBASIC PONG Play v1.1](./QuickBASIC/Images/QuickBASIC_PONG_Play_1.1.gif)
 
+### 🔄 Improvements from [v1.0 (2026.02.07)](#pong-the-origin-1972-atari-style-reimplementation-v10-20260207)
+  * **Eliminate Paddle Flickering**: Implemented directional-selective erasing for paddles—only the regions affected by movement are cleared.
+  * **Enlarge Score Display**: Introduced bitmap font-based multi-row graphics rendering with a custom 5-row character array, scaling scores closer to the original 1972 Atari aesthetic and improving visibility.
+  * **Fine-Tuned Wall Collision Angles**: Refined ball trajectory calculations at wall boundaries with anti-sticking bounce logic, including force-back positioning to prevent edge-case adhesion.
 
 
-## [Pong The Origin: 1972 Atari Style Reimplementation (2026.02.07)](#list)
+## [Pong The Origin: 1972 Atari Style Reimplementation v1.0 (2026.02.07)](#list)
 
   ![QuickBASIC PONG Play](./QuickBASIC/Images/QuickBASIC_PONG_Play.gif)
 
