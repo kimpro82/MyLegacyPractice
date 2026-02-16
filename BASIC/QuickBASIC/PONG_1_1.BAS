@@ -195,20 +195,21 @@ SUB OpeningScreen ()
     COLOR 7
     LOCATE TITLE.Y + 7, INFO.X: PRINT "Reimplementation of Atari's 1972 Pong"
     LOCATE TITLE.Y + 8, INFO.X: PRINT "Written in QuickBASIC with Google Gemini 3 Flash"
-    LOCATE TITLE.Y + 10, INFO.X: PRINT "Developer : kimpro82"
-    LOCATE TITLE.Y + 11, INFO.X: PRINT "Date      : 2026.02.16"
+    LOCATE TITLE.Y + 10, INFO.X: PRINT "Version   : 1.1"
+    LOCATE TITLE.Y + 11, INFO.X: PRINT "Developer : kimpro82"
+    LOCATE TITLE.Y + 12, INFO.X: PRINT "Date      : 2026.02.16"
 
-    COLOR 15: LOCATE TITLE.Y + 13, INFO.X: PRINT "FIRST TO 11 POINTS WINS THE MATCH!"
+    COLOR 15: LOCATE TITLE.Y + 14, INFO.X: PRINT "FIRST TO 11 POINTS WINS THE MATCH!"
 
     COLOR 11
-    LOCATE TITLE.Y + 15, INFO.X: PRINT "[ CONTROLS ]"
-    LOCATE TITLE.Y + 16, INFO.X: PRINT "P1 (Left) : W / S Keys"
-    LOCATE TITLE.Y + 17, INFO.X: PRINT "P2 (Right): Up / Down Arrow Keys"
+    LOCATE TITLE.Y + 16, INFO.X: PRINT "[ CONTROLS ]"
+    LOCATE TITLE.Y + 17, INFO.X: PRINT "P1 (Left) : W / S Keys"
+    LOCATE TITLE.Y + 18, INFO.X: PRINT "P2 (Right): Up / Down Arrow Keys"
 
     COLOR 14
-    LOCATE TITLE.Y + 19, INFO.X: PRINT "STEP 1: SELECT MODE"
-    LOCATE TITLE.Y + 20, INFO.X: PRINT "1. Single Player (vs AI)"
-    LOCATE TITLE.Y + 21, INFO.X: PRINT "2. Two Players"
+    LOCATE TITLE.Y + 20, INFO.X: PRINT "STEP 1: SELECT MODE"
+    LOCATE TITLE.Y + 21, INFO.X: PRINT "1. Single Player (vs AI)"
+    LOCATE TITLE.Y + 22, INFO.X: PRINT "2. Two Players"
     DO
         sel$ = INKEY$
         IF sel$ = "1" THEN p2IsAI = 1: EXIT DO
@@ -216,8 +217,8 @@ SUB OpeningScreen ()
     LOOP
 
     COLOR 13
-    LOCATE TITLE.Y + 23, INFO.X: PRINT "STEP 2: SELECT DIFFICULTY"
-    LOCATE TITLE.Y + 24, INFO.X: PRINT "1. EASY  2. NORMAL  3. HARD"
+    LOCATE TITLE.Y + 24, INFO.X: PRINT "STEP 2: SELECT DIFFICULTY"
+    LOCATE TITLE.Y + 25, INFO.X: PRINT "1. EASY  2. NORMAL  3. HARD"
     DO
         sel$ = INKEY$
         IF sel$ >= "1" AND sel$ <= "3" THEN
