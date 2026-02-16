@@ -157,7 +157,7 @@ DO
     IF oldBallX > 310 AND oldBallX < 330 THEN DrawCenterLine
     
     ' Redraw score if ball enters score region to fix trails
-    IF oldBallY < 60 THEN DrawScore score1, score2
+    IF oldBallY < 120 THEN DrawScore score1, score2
 
     ' Partial Redraw Logic for Paddles
     IF p1Y > oldP1Y THEN ' DOWN
