@@ -14,6 +14,7 @@ DECLARE SUB DrawPaddle (x!, y!, c!)
 DECLARE SUB UpdateBall ()
 DECLARE SUB CheckCollisions ()
 DECLARE SUB DrawCenterLine ()
+DECLARE SUB DrawScore (scoreVal1 AS INTEGER, scoreVal2 AS INTEGER)
 
 ' --- UI Alignment Constants ---
 CONST TITLE.X = 2
@@ -34,7 +35,7 @@ CONST ANGLE.SENSITIVITY = 0.25
 DIM SHARED ballX, ballY, ballDX, ballDY AS SINGLE
 DIM SHARED oldBallX, oldBallY AS SINGLE
 DIM SHARED p1Y, p2Y, oldP1Y, oldP2Y AS SINGLE
-DIM SHARED score1, score2 AS INTEGER
+DIM SHARED score1 AS INTEGER, score2 AS INTEGER
 DIM SHARED p2IsAI AS INTEGER 
 DIM SHARED difficulty AS INTEGER 
 DIM SHARED ballSize AS INTEGER: ballSize = 8
@@ -63,7 +64,7 @@ score1 = 0: score2 = 0
 
 ' --- Initial Startup Delay (Ready?) ---
 CLS
-LOCATE 2, 37: PRINT score1; " : "; score2
+DrawScore score1, score2
 DrawCenterLine
 DrawPaddle 20, p1Y, 15
 DrawPaddle 610, p2Y, 15
@@ -154,7 +155,9 @@ DO
     ' --- Rendering ---
     LINE (oldBallX, oldBallY)-(oldBallX + ballSize, oldBallY + ballSize), 0, BF
     IF oldBallX > 310 AND oldBallX < 330 THEN DrawCenterLine
-    IF oldBallY < 35 THEN LOCATE 2, 37: PRINT score1; " : "; score2
+    
+    ' Redraw score if ball enters score region to fix trails
+    IF oldBallY < 60 THEN DrawScore score1, score2
 
     ' Partial Redraw Logic for Paddles
     IF p1Y > oldP1Y THEN ' DOWN
@@ -234,35 +237,60 @@ SUB DrawCenterLine ()
     NEXT i
 END SUB
 
+SUB DrawScore (scoreVal1 AS INTEGER, scoreVal2 AS INTEGER)
+    ' Internal font data
+    DIM f$(11, 4)
+    f$(0, 0) = " ### ": f$(0, 1) = "#   #": f$(0, 2) = "#   #": f$(0, 3) = "#   #": f$(0, 4) = " ### "
+    f$(1, 0) = "  #  ": f$(1, 1) = " ##  ": f$(1, 2) = "  #  ": f$(1, 3) = "  #  ": f$(1, 4) = " ### "
+    f$(2, 0) = " ### ": f$(2, 1) = "    #": f$(2, 2) = " ### ": f$(2, 3) = "#    ": f$(2, 4) = " ####"
+    f$(3, 0) = " ### ": f$(3, 1) = "    #": f$(3, 2) = "  ## ": f$(3, 3) = "    #": f$(3, 4) = " ### "
+    f$(4, 0) = "#   #": f$(4, 1) = "#   #": f$(4, 2) = " ####": f$(4, 3) = "    #": f$(4, 4) = "    #"
+    f$(5, 0) = " ####": f$(5, 1) = "#    ": f$(5, 2) = " ### ": f$(5, 3) = "    #": f$(5, 4) = " ### "
+    f$(6, 0) = " ### ": f$(6, 1) = "#    ": f$(6, 2) = " ####": f$(6, 3) = "#   #": f$(6, 4) = " ### "
+    f$(7, 0) = " ####": f$(7, 1) = "    #": f$(7, 2) = "   # ": f$(7, 3) = "  #  ": f$(7, 4) = " #   "
+    f$(8, 0) = " ### ": f$(8, 1) = "#   #": f$(8, 2) = " ### ": f$(8, 3) = "#   #": f$(8, 4) = " ### "
+    f$(9, 0) = " ### ": f$(9, 1) = "#   #": f$(9, 2) = " ####": f$(9, 3) = "    #": f$(9, 4) = " ### "
+    f$(10, 0) = "#  ### ": f$(10, 1) = "# #   #": f$(10, 2) = "# #   #": f$(10, 3) = "# #   #": f$(10, 4) = "#  ### "
+    f$(11, 0) = "#  # ": f$(11, 1) = "#  # ": f$(11, 2) = "#  # ": f$(11, 3) = "#  # ": f$(11, 4) = "#  # "
+
+    COLOR 15
+    ' Draw Player 1 Score (Left)
+    FOR row = 0 TO 4
+        LOCATE 2 + row, 30: PRINT f$(scoreVal1, row)
+    NEXT row
+    ' Draw Player 2 Score (Right)
+    FOR row = 0 TO 4
+        LOCATE 2 + row, 45: PRINT f$(scoreVal2, row)
+    NEXT row
+END SUB
+
 SUB UpdateBall ()
     ballX = ballX + ballDX: ballY = ballY + ballDY
-    IF ballY <= 0 OR ballY >= SCREEN.HEIGHT - 8 THEN
-        ballDY = -ballDY: SOUND 800, 0.1
+    
+    ' Top/Bottom Boundary Reflection with Anti-Sticking Logic
+    IF ballY <= 0 OR ballY >= SCREEN.HEIGHT - ballSize THEN
+        ballDY = -ballDY
+        ' Prevent horizontal sliding
+        IF ballDY > 0 THEN ballDY = ballDY + 0.1 ELSE ballDY = ballDY - 0.1
+        ' Force back to bounds
+        IF ballY <= 0 THEN ballY = 1 ELSE ballY = SCREEN.HEIGHT - ballSize - 1
+        SOUND 800, 0.1
     END IF
     
     ' Goal Scoring Detection
     IF ballX < 0 OR ballX > SCREEN.WIDTH THEN
-        ' Score Sound (Blocking)
         SOUND 440, 0.5: SOUND 330, 0.8
-
-        ' Check who scored for serving logic before updating scores
         DIM scorer AS INTEGER
         IF ballX < 0 THEN scorer = 2 ELSE scorer = 1
 
-        ' Update scores
         IF scorer = 2 THEN score2 = score2 + 1 ELSE score1 = score1 + 1
         
-        ' Handle New Serve if no one won yet
         IF score1 < WINNING.SCORE AND score2 < WINNING.SCORE THEN
-            ' Clear screen once
             CLS
-            LOCATE 2, 37: PRINT score1; " : "; score2
+            DrawScore score1, score2
             DrawCenterLine
             
-            ' Reset ball position to center
             ballX = 320: ballY = 240
-            
-            ' Determine new velocity based on difficulty
             DIM bDX, bDY AS SINGLE
             SELECT CASE difficulty
                 CASE 1: bDX = 5: bDY = 3
@@ -270,29 +298,16 @@ SUB UpdateBall ()
                 CASE 3: bDX = 9: bDY = 7
             END SELECT
             
-            ' *** SERVE LOGIC: Scorer -> Opponent ***
-            IF scorer = 1 THEN 
-                ballDX = bDX    ' Serve to the right (towards P2)
-            ELSE 
-                ballDX = -bDX   ' Serve to the left (towards P1)
-            END IF
-            
-            ' Variable angle
+            IF scorer = 1 THEN ballDX = bDX ELSE ballDX = -bDX
             ballDY = (bDY * 0.7) + (RND * (bDY * 0.6))
             IF RND > 0.5 THEN ballDY = -ballDY
 
-            ' Prep for flicker-free delay loop
-            DIM sOldP1Y, sOldP2Y AS SINGLE
-            sOldP1Y = p1Y: sOldP2Y = p2Y
-
-            ' Delay before next serve
             startTime# = TIMER
             DO
                 sOldP1Y = p1Y: sOldP2Y = p2Y
                 k$ = INKEY$
                 IF k$ = "w" OR k$ = "W" THEN p1Y = p1Y - PADDLE.SPEED
                 IF k$ = "s" OR k$ = "S" THEN p1Y = p1Y + PADDLE.SPEED
-                
                 IF p2IsAI = 1 THEN
                     IF ballY > p2Y + (PADDLE.HEIGHT / 2) THEN p2Y = p2Y + 1
                     IF ballY < p2Y + (PADDLE.HEIGHT / 2) THEN p2Y = p2Y - 1
@@ -300,12 +315,11 @@ SUB UpdateBall ()
                     IF k$ = CHR$(0) + "H" THEN p2Y = p2Y - PADDLE.SPEED
                     IF k$ = CHR$(0) + "P" THEN p2Y = p2Y + PADDLE.SPEED
                 END IF
+                IF p1Y < 0 THEN p1Y = 0
+                IF p1Y > 420 THEN p1Y = 420
+                IF p2Y < 0 THEN p2Y = 0
+                IF p2Y > 420 THEN p2Y = 420
 
-                ' Clamp
-                IF p1Y < 0 THEN p1Y = 0: IF p1Y > 420 THEN p1Y = 420
-                IF p2Y < 0 THEN p2Y = 0: IF p2Y > 420 THEN p2Y = 420
-
-                ' Partial redraw
                 IF p1Y > sOldP1Y THEN LINE (20, sOldP1Y)-(20 + PADDLE.WIDTH, p1Y), 0, BF
                 IF p1Y < sOldP1Y THEN LINE (20, p1Y + PADDLE.HEIGHT)-(20 + PADDLE.WIDTH, sOldP1Y + PADDLE.HEIGHT), 0, BF
                 IF p2Y > sOldP2Y THEN LINE (610, sOldP2Y)-(610 + PADDLE.WIDTH, p2Y), 0, BF
@@ -314,7 +328,6 @@ SUB UpdateBall ()
                 DrawPaddle 20, p1Y, 15
                 DrawPaddle 610, p2Y, 15
                 LINE (ballX, ballY)-(ballX + ballSize, ballY + ballSize), 15, BF
-                
                 FOR d = 1 TO 500: NEXT d
             LOOP UNTIL TIMER > startTime# + 1.2
             
@@ -325,7 +338,7 @@ SUB UpdateBall ()
 END SUB
 
 SUB CheckCollisions ()
-    ' Left Paddle (P1)
+    ' P1 Collision
     IF ballX <= 30 AND ballX >= 20 THEN
         IF ballY + ballSize >= p1Y AND ballY <= p1Y + PADDLE.HEIGHT THEN
             ballDX = ABS(ballDX) + ACCEL.RATE
@@ -336,8 +349,7 @@ SUB CheckCollisions ()
             SOUND 1200, 0.1
         END IF
     END IF
-
-    ' Right Paddle (P2)
+    ' P2 Collision
     IF ballX + ballSize >= 610 AND ballX <= 620 THEN
         IF ballY + ballSize >= p2Y AND ballY <= p2Y + PADDLE.HEIGHT THEN
             ballDX = -(ABS(ballDX) + ACCEL.RATE)
