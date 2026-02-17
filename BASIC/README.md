@@ -34,6 +34,11 @@ My Nostalgia: Code from the **Legacy BASIC** Family (*GW-BASIC*, *QuickBASIC*, e
   * **Eliminate Paddle Flickering**: Implemented directional-selective erasing for paddles—only the regions affected by movement are cleared.
   * **Fine-Tuned Wall Collision Angles**: Refined ball trajectory calculations at wall boundaries with anti-sticking bounce logic, including force-back positioning to prevent edge-case adhesion.
 
+### 📌 Technical Notes & Constraints
+  * **CPU-Dependent Execution Speed**: An attempt was made to implement hardware-independent frame rates using the `TIMER` function. However, the native `TIMER` in QuickBASIC provides a resolution of only approximately **1/18.2 seconds (≒55ms)**, which is insufficient for the fine-grained precision required for smooth gameplay (e.g., 60 FPS or 16ms intervals).
+  * **Optimization for DOSBox**: Due to these technical limitations, the game utilizes an old-fashioned `FOR …… NEXT` loop to control execution speed. While this introduces CPU dependency, it has been optimized at **3000 Cycles in DOSBox**.
+  * **References**: Detailed documentation on QuickBASIC timer precision can be found at [QB64 Wiki: TIMER](https://qb64.com/wiki/TIMER.html).
+
 
 ## [Pong The Origin: 1972 Atari Style Reimplementation v1.0 (2026.02.07)](#list)
 
