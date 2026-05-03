@@ -23,6 +23,7 @@ Being Great Gatsby with legacy language programming
 ## [BASIC](/BASIC/)
 
 #### GW-BASIC
+  - [Analog Clock (2026.05.04)](/BASIC/README.md#analog-clock-20260504)
   - [Draw a Square, Triangle, and Circle (2025.06.30)](/BASIC/README.md#draw-a-square-triangle-and-circle-20250630)
   - [Lotto 6/45 Number Generator (2024.08.28)](/BASIC/README.md#lotto-645-number-generator-20240828)
   - [Simultaneous Equations Solver (2024.08.20)](/BASIC/README.md#simultaneous-equations-solver-20240820)
