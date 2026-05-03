@@ -6,6 +6,7 @@ My Nostalgia: Code from the **Legacy BASIC** Family (*GW-BASIC*, *QuickBASIC*, e
 ### \<List>
 
 #### GW-BASIC
+- [Analog Clock (2026.05.04)](#analog-clock-20260504)
 - [Draw a Square, Triangle, and Circle (2025.06.30)](#draw-a-square-triangle-and-circle-20250630)
 - [Lotto 6/45 Number Generator (2024.08.28)](#lotto-645-number-generator-20240828)
 - [Simultaneous Equations Solver (2024.08.20)](#simultaneous-equations-solver-20240820)
@@ -22,6 +23,31 @@ My Nostalgia: Code from the **Legacy BASIC** Family (*GW-BASIC*, *QuickBASIC*, e
 
 #### ETC
 - [References (2020.02.25)](#references-20200225)
+
+
+
+## [Analog Clock (2026.05.04)](#list)
+
+  ![Analog Clock](./GW-BASIC/Images/GW-BASIC_CLOCK.gif)
+
+### ✨ Key Features
+*   **Real-time Synchronization**: Reflects the system's current time using the `TIME$` function.
+*   **Visual Calibration**: Optimized for **SCREEN 1 (320x200)** with aspect ratio (`AR`) correction to ensure a perfect circular clock face.
+*   **Graceful exit routine**: Restores the environment to standard text mode (`SCREEN 0`).
+
+### 🛠️ Technical Specifications
+*   **Graphics Mode**: `SCREEN 1` (4-color palette)
+*   **Math**: Trigonometric functions (`SIN`, `COS`) for hand coordinate mapping
+
+### 📂 Project Structure
+*   **1000s**: Constant definitions (PI, Center Coordinates, Lengths)
+*   **2000s**: Graphics and screen mode initialization
+*   **3000s**: Clock face rendering (Numbers, Outer Circle, Metadata)
+*   **4000s**: Real-time clock string parsing
+*   **5000s**: Background-color line erasing (Old hand removal)
+*   **6000s**: Trigonometric coordinate calculations
+*   **7000s**: Multi-colored hand rendering
+*   **8000s**: Termination and environment cleanup
 
 
 ## [Pong The Origin: 1972 Atari Style Reimplementation v1.1 (2026.02.16)](#list)
