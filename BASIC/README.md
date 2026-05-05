@@ -6,6 +6,7 @@ My Nostalgia: Code from the **Legacy BASIC** Family (*GW-BASIC*, *QuickBASIC*, e
 ### \<List>
 
 #### GW-BASIC
+- [Analog Clock (2026.05.05)](#analog-clock-20260505)
 - [Draw a Square, Triangle, and Circle (2025.06.30)](#draw-a-square-triangle-and-circle-20250630)
 - [Lotto 6/45 Number Generator (2024.08.28)](#lotto-645-number-generator-20240828)
 - [Simultaneous Equations Solver (2024.08.20)](#simultaneous-equations-solver-20240820)
@@ -22,6 +23,37 @@ My Nostalgia: Code from the **Legacy BASIC** Family (*GW-BASIC*, *QuickBASIC*, e
 
 #### ETC
 - [References (2020.02.25)](#references-20200225)
+
+
+
+## [Analog Clock (2026.05.05)](#list)
+
+  ![Analog Clock](./GW-BASIC/Images/GW-BASIC_CLOCK.gif)
+
+### ✨ Key Features
+*   **Real-time Synchronization**: Reflects the system's current time using the `TIME$` function.
+*   **Visual Calibration**: Optimized for **SCREEN 1 (320x200)** with aspect ratio (`AR`) correction to ensure a perfect circular clock face.
+*   **Flicker-Free Optimization**: Implements a "1-minute refresh strategy" that redraws the clock face only at specific intervals (SEC=2) to minimize screen flickering.
+*   **Anti-Ghosting System**: Uses a "Clear-and-Draw" method to remove old hand positions before rendering new ones.
+*   **Graceful Exit Routine**: Restores the environment to standard text mode (`SCREEN 0`) upon any key press.
+
+### 🛠️ Technical Specifications
+*   **Graphics Mode**: `SCREEN 1` (4-color palette)
+*   **Math**: Trigonometric functions (`SIN`, `COS`) for hand coordinate mapping
+*   **Type Safety**: Utilizes integer-type variables (`%`) for coordinate calculations to enhance performance and stability.
+
+### 📂 Project Structure
+*   **10-50**: Project metadata and header comments.
+*   **100s**: Main initialization and entry point.
+*   **200s (Main Loop)**: Core loop handling time detection, INKEY$ exit, and the conditional UI refresh logic (Line 280).
+*   **1000s**: Constant definitions (PI, Center Coordinates, Lengths) and initial coordinate setup.
+*   **2000s**: Graphics and screen mode initialization.
+*   **3000s**: Clock face rendering. Subdivided into full metadata (3010) and face-only (3050) routines for efficient refreshing.
+*   **4000s**: Real-time clock string parsing (`TIME$`).
+*   **5000s**: Background-color line erasing (Old hand removal).
+*   **6000s**: Trigonometric coordinate calculations for hour, minute, and second hands.
+*   **7000s**: Hand rendering using the `LINE` command.
+*   **8000s**: Termination and environment cleanup.
 
 
 ## [Pong The Origin: 1972 Atari Style Reimplementation v1.1 (2026.02.16)](#list)
