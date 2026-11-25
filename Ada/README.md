@@ -11,15 +11,26 @@ Remember Ada Lovelace
 - Compiler : [JDoodle](https://www.jdoodle.com/) > [Online Ada Compiler](https://www.jdoodle.com/execute-ada-online)
 
 
+### \<Note>
+
+- Run an Ada program with `./run.sh Ada/Strong_Typing.adb` from the repository root, or `./run.sh Strong_Typing.adb` from this directory.
+- On Debian/Ubuntu, install GNAT if needed with `./install_env.sh`.
+
+
 ### \<List>
 
+- [Strong Typing (2026.11.25)](#strong-typing-20261125)
 - [Multiplication Table (2024.02.21)](#multiplication-table-20240221)
 - [Hello World (2024.02.21)](#hello-world-20240221)
-- [Strong Typing (2026.11.25)](#strong-typing-20261125)
 
-Run an Ada program with `./run.sh Ada/Strong_Typing.adb` from the repository
-root, or `./run.sh Strong_Typing.adb` from this directory.
-On Debian/Ubuntu, install GNAT if needed with `./install_env.sh`.
+
+
+## [Strong Typing (2026.11.25)](#list)
+
+- Demonstrates distinct flight-domain numeric types, an altitude range subtype,
+  explicit meters-to-feet conversion, and handling an out-of-range assignment.
+- Source: [Strong_Typing.adb](./Strong_Typing.adb)
+
 
 
 ## [Multiplication Table (2024.02.21)](#list)
@@ -120,10 +131,3 @@ On Debian/Ubuntu, install GNAT if needed with `./install_env.sh`.
     Remember Ada Lovelace
     ```
   </details>
-
-
-## [Strong Typing (2026.11.25)](#list)
-
-- Demonstrates distinct flight-domain numeric types, an altitude range subtype,
-  explicit meters-to-feet conversion, and handling an out-of-range assignment.
-- Source: [Strong_Typing.adb](./Strong_Typing.adb)
