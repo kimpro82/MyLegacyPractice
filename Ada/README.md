@@ -29,13 +29,13 @@ Ada is actually not a legacy language. It remains in active use in fields such a
 
 ### \<List>
 
-- [Strong Typing (2026.11.25)](#strong-typing-20261125)
+- [Strong Typing, Subtypes, and Range Constraints (2026.11.25)](#strong-typing-subtypes-and-range-constraints-20261125)
 - [Multiplication Table (2024.02.21)](#multiplication-table-20240221)
 - [Hello World (2024.02.21)](#hello-world-20240221)
 
 
 
-## [Strong Typing (2026.11.25)](#list)
+## [Strong Typing, Subtypes, and Range Constraints (2026.11.25)](#list)
 
 - Practice strong typing with a flight-monitoring example:
   - `Feet`, `Meters`, and `Knots` are distinct numeric types.
