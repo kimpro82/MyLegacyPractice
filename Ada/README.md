@@ -17,6 +17,9 @@ Remember Ada Lovelace
 - [Hello World (2024.02.21)](#hello-world-20240221)
 - [Strong Typing (2026.11.25)](#strong-typing-20261125)
 
+Run an Ada program with `./run.sh Ada/Strong_Typing.adb` from the repository
+root, or `./run.sh Strong_Typing.adb` from this directory.
+
 
 ## [Multiplication Table (2024.02.21)](#list)
 
