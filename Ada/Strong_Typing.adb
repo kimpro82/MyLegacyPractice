@@ -3,7 +3,7 @@
 
 with Ada.Text_IO; use Ada.Text_IO;
 
-procedure Flight_Type_Constraints is
+procedure Strong_Typing is
    type Feet is new Integer;
    type Meters is new Integer;
    type Knots is new Float;
@@ -46,4 +46,4 @@ begin
       when Constraint_Error =>
          Put_Line ("Rejected airspeed outside the operational range.");
    end;
-end Flight_Type_Constraints;
+end Strong_Typing;
