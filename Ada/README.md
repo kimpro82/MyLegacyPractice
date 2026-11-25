@@ -15,6 +15,7 @@ Remember Ada Lovelace
 
 - [Multiplication Table (2024.02.21)](#multiplication-table-20240221)
 - [Hello World (2024.02.21)](#hello-world-20240221)
+- [Flight Type Constraints (2026.11.25)](#flight-type-constraints-20261125)
 
 
 ## [Multiplication Table (2024.02.21)](#list)
@@ -115,3 +116,10 @@ Remember Ada Lovelace
     Remember Ada Lovelace
     ```
   </details>
+
+
+## [Flight Type Constraints (2026.11.25)](#list)
+
+- Demonstrates distinct flight-domain numeric types, an altitude range subtype,
+  explicit meters-to-feet conversion, and handling an out-of-range assignment.
+- Source: [Flight_Type_Constraints.adb](./Flight_Type_Constraints.adb)
