@@ -19,6 +19,7 @@ Remember Ada Lovelace
 
 Run an Ada program with `./run.sh Ada/Strong_Typing.adb` from the repository
 root, or `./run.sh Strong_Typing.adb` from this directory.
+On Debian/Ubuntu, install GNAT if needed with `./install_env.sh`.
 
 
 ## [Multiplication Table (2024.02.21)](#list)
