@@ -41,6 +41,7 @@ Ada is actually not a legacy language. It remains in active use in fields such a
   - `Feet`, `Meters`, and `Knots` are distinct numeric types.
   - `Cruise_Altitude` and `Operational_Airspeed` enforce valid ranges.
   - Conversion functions make unit changes explicit.
+  - Commented examples demonstrate compile-time errors for mismatched types.
   - Out-of-range assignments raise and handle `Constraint_Error`.
 - Code and Output
   <details>
@@ -81,6 +82,10 @@ Ada is actually not a legacy language. It remains in active use in fields such a
        Converted_Altitude : Meters := To_Meters (Cruise_Level);
        Airspeed          : Operational_Airspeed := 250.0;
     begin
+       -- Uncomment either line to see a compile-time type mismatch error:
+       -- Cruise_Level := Measured_Altitude;
+       -- Cruise_Level := Cruise_Level + Airspeed;
+
        Put_Line ("Altitude in feet:" &
          Integer'Image (Integer (Cruise_Level)));
        Put_Line ("Converted altitude in meters:" &

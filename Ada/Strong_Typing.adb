@@ -32,6 +32,10 @@ procedure Strong_Typing is
    Converted_Altitude : Meters := To_Meters (Cruise_Level);
    Airspeed          : Operational_Airspeed := 250.0;
 begin
+   -- Uncomment either line to see a compile-time type mismatch error:
+   -- Cruise_Level := Measured_Altitude;
+   -- Cruise_Level := Cruise_Level + Airspeed;
+
    Put_Line ("Altitude in feet:" &
      Integer'Image (Integer (Cruise_Level)));
    Put_Line ("Converted altitude in meters:" &
