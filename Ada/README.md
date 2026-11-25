@@ -1,6 +1,9 @@
 # [My Ada Practice](/README.md#ada)
 
-Remember Ada Lovelace
+Remember Ada Lovelace ……
+
+Ada is actually not a legacy language. It remains in active use in fields such as defense and aerospace, where safety and reliability are essential.
+
 
 
 ### References
