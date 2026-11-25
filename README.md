@@ -6,6 +6,7 @@ Being Great Gatsby with legacy language programming
 
 ## [Ada](/Ada/)
 
+  - [Strong Typing (2026.11.25)](/Ada/README.md#strong-typing-20261125)
   - [Multiplication Table (2024.02.21)](/Ada/README.md#multiplication-table-20240221)
   - [Hello World (2024.02.21)](/Ada/README.md#hello-world-20240221)
 
