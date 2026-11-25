@@ -1,21 +1,27 @@
--- Flight Type Constraints
--- Practice distinct numeric types and constrained subtypes.
+-- Strong Typing
+-- Date : 2026.11.25
+-- Demonstrates distinct numeric types, range constraints, and explicit
+-- unit conversions in a flight-monitoring example.
 
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure Strong_Typing is
+   -- Distinct types prevent accidental mixing of different units.
    type Feet is new Integer;
    type Meters is new Integer;
    type Knots is new Float;
 
+   -- Subtypes constrain values to safe operating ranges.
    subtype Cruise_Altitude is Feet range 10_000 .. 45_000;
    subtype Operational_Airspeed is Knots range 0.0 .. 450.0;
 
+   -- Convert through Float to support fractional unit scaling.
    function To_Feet (Value : Meters) return Feet is
    begin
       return Feet (Float (Value) * 3.28084);
    end To_Feet;
 
+   -- Convert back to whole meters.
    function To_Meters (Value : Feet) return Meters is
    begin
       return Meters (Float (Value) / 3.28084);
@@ -33,6 +39,7 @@ begin
    Put_Line ("Airspeed in knots:" &
      Float'Image (Float (Airspeed)));
 
+   -- Out-of-range assignments raise Constraint_Error; catch it for the demo.
    begin
       Cruise_Level := Feet (50_000);
    exception
